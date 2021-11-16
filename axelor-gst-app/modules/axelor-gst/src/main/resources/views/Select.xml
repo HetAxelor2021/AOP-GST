@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://axelor.com/xml/ns/object-views http://axelor.com/xml/ns/object-views/object-views_5.3.xsd">
+
+	<selection name="gst.contact.type.select" >
+		<option value="primary">Primary</option>
+		<option value="secondary">Secondary</option>
+		<option value="other">Other</option>
+	</selection>
+	
+	<selection name="gst.bankAccount.type.select" >
+		<option value="saving" >Saving</option>
+		<option value="current" default="true">Current</option>
+	</selection>
+	
+	<selection name="gst.address.type.select" >
+		<option value="default">default</option>
+		<option value="invoice">Invoice</option>
+		<option value="shipping">Shipping</option>
+		<option value="other">Other</option>
+		
+	</selection>
+	
+	<selection name="gst.party.type.select">
+		<option value="individual">Individual</option>
+		<option value="company" default="true">Company</option>
+	</selection>
+    
+</object-views>

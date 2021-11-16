@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
+ 
+ 	<menuitem name="party-root" title="Party"/>
+ 	<menuitem  title="Party" parent="party-root" name="party-root-party" action="action.gst.root.party" />
+ 	<action-view name="action.gst.root.party" title="Party" model="com.axelor.gst.db.Party" >
+ 		<view type="grid" name="party-grid" />			
+ 		<view type="form" name="party-form" />
+ 	</action-view>	
+ 	
+ 	<menuitem title="Configuration" name="party-root-configuration" parent="party-root" action="" />
+ 	<menuitem title="Address" name="party-root-configuration-address" parent="party-root-configuration" action="" />
+ 	
+  	
+  	
+  
+</object-views>
