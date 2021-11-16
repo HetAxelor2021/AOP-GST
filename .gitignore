@@ -1,0 +1,15 @@
+.git
+.metadata
+
+Servers
+**/build
+**/bin
+**/.gradle
+**/.metadata
+**/.settings
+**/gradlew
+**/gradlew.bat
+**/.classpath
+**/.project
+**/gradle
+
