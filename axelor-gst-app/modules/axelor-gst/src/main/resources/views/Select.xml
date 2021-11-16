@@ -11,7 +11,7 @@
 	
 	<selection name="gst.bankAccount.type.select" >
 		<option value="saving" >Saving</option>
-		<option value="current" default="true">Current</option>
+		<option value="current">Current</option>
 	</selection>
 	
 	<selection name="gst.address.type.select" >
@@ -24,7 +24,15 @@
 	
 	<selection name="gst.party.type.select">
 		<option value="individual">Individual</option>
-		<option value="company" default="true">Company</option>
+		<option value="company" >Company</option>
+	</selection>
+	
+	<selection name="gst.invoice.status.select" >
+		<option value="draft">Draft</option>
+		<option value="validated">Validated</option>
+		<option value="paid">Paid</option>
+		<option value="cancelled">Cancelled</option>
+		
 	</selection>
     
 </object-views>
