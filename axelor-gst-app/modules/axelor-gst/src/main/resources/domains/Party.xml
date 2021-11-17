@@ -3,6 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://axelor.com/xml/ns/domain-models
 	http://axelor.com/xml/ns/domain-models/domain-models_5.4.xsd">
+
 	<module name="gst" package="com.axelor.gst.db" />
 	<sequence name="party.order.seq" initial="1" increment="1" padding="10" prefix="ABC" />
 	 
@@ -13,8 +14,8 @@
 		<boolean name="customer" title="Customer" />
 		<boolean name="supplier" title="Supplier" />
 		<string name="gstin" title="GSTIN" min="15" max="15" />
-		<one-to-many name="contactList" ref="com.axelor.gst.db.Contact" title="List of Contact" />
-		<one-to-many name="addressList" ref="com.axelor.gst.db.Address" title="List of Address" />
+		<one-to-many name="contactList" ref="com.axelor.gst.db.Contact" title="List of Contact" mappedBy="party"/>
+		<one-to-many name="addressList" ref="com.axelor.gst.db.Address" title="List of Address" mappedBy="party"/>
 		
 	</entity>
 </domain-models>

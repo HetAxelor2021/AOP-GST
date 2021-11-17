@@ -17,7 +17,7 @@
 		<decimal name="sgst" title="SGST" readonly="true" />
 		<decimal name="cgst" title="CGST" readonly="true" />
 		<decimal name="grossAmount" title="Gross Amount" readonly="true" />
-		
+		<many-to-one name="invoice" title="Invoice" ref="com.axelor.gst.db.Invoice" />
 		
 		
 		

@@ -11,6 +11,6 @@
 		<string name="ifsc" title="IFSC" required="true"/>
 		<string name="type" title="Type" default="current" selection="gst.bankAccount.type.select" />
 		<string name="address" title="Address" large="true" multiline="true" />
-		
+		<many-to-one name="company" title="Company" ref="com.axelor.gst.db.Company" /> 
 	</entity>
 </domain-models>

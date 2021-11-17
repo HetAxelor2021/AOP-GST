@@ -49,17 +49,17 @@
 	<!-- product-sub-section-product -->
 	<menuitem name="product-root-product" title="Products" parent="product-root" action="action.gst.root.product" />
 	<action-view name="axelor.gst.root.product" title="Products" model="com.axelor.gst.db.Product" >
-		<!-- <view type="cards" name="product-cards" />
+		<view type="cards" name="product-cards" />
 		<view type="grid" name="product-grid" />
-		<view type="form" name="product-form" /> -->
+		<view type="form" name="product-form" />
 	</action-view>
   
   	<!-- product-sub-section-productCategories -->
   	<menuitem name="product-root-product-category" title="Product Categories" parent="product-root" action="action.gst.root.product.category"/>
   	<action-view name="action.gst.root.product.category" title="Products Categories" model="com.axelor.gst.db.ProductCategory" >
-  	<!-- 	<view type="grid" name="product-category-grid" />
+  		<view type="grid" name="product-category-grid" />
   		<view type="form" name="product-category-form" />
-  	 -->	
+  		
   	</action-view>
   
   <!-- section-Invoice  -->
