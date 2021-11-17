@@ -20,7 +20,7 @@
 			<field name="name" />
 			<field name="code" />
 			<field name="hsbn" />
-			<field name="category" />
+			<field name="category" onChange="action-product-category-onchange"/>
 			<field name="salePrice" />
 			<field name="costPrice" />
 			<field name="image" widget="image"/>
@@ -32,7 +32,7 @@
 		<field name="name" />
 		<field name="code" />
 		<field name="hsbn" />
-		<field name="category" />
+		<field name="category" onChange="action-product-category-onchange"/>
 		<field name="salePrice" />
 		<field name="costPrice" />
 		<field name="image" />
@@ -64,5 +64,9 @@
 		</template>
 	
 	</cards>
+  
+  	<action-record name="action-product-category-onchange" model="com.axelor.gst.db.Product">
+  		<field name="gstRate" expr="eval:category.gstRate" />
+  	</action-record>
   
  </object-views>

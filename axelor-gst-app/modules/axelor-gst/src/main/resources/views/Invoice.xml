@@ -71,7 +71,7 @@
 	
 	<form name="invoice-form" title="Invoice" model="com.axelor.gst.db.Invoice" >
 			<panel title="Invoice" >
-				<field name="status" />
+				<field name="status" widget="navSelect" colSpan="12"/>
 				<field name="company" />
 				<field name="reference" />
 				<field name="dateInvoice" />
@@ -92,9 +92,9 @@
 	
 	
 	<search-filters name="invoice-search-filters" model="com.axelor.gst.db.Invoice" title="Invoices" >
-		<field name="status" hidden="true" />
+		<field name="priority"  />
 		<filter title="status filter" >
-			<domain>self.status == "draft"</domain>
+			<domain>priority == "2"</domain>
 		</filter>
 	</search-filters>
   

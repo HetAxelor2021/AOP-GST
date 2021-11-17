@@ -8,7 +8,7 @@
 	<sequence name="invoice.order.seq" initial="1" increment="1" padding="10" prefix="ABC" />
 	
 	<entity name="Invoice" sequential="true">
-		<string name="status" title="Status" readonly="true" selection="gst.invoice.status.select"/>
+		<string name="status" title="Status" selection="gst.invoice.status.select"/>
 		<many-to-one name="company" title="Company" ref="com.axelor.gst.db.Company" required="true" />
 		<string name="reference" readonly="true" sequence="invoice.order.seq" title="reference" />
 		<datetime name="dateInvoice" title="DateInvoice"  />

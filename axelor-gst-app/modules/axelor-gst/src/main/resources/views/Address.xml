@@ -19,12 +19,21 @@
 	  		<field name="type" />
 	  		<field name="line1" />
 	  		<field name="line2" />
-	  		<field name="city" />
-	  		<field name="state" />
-	  		<field name="country" />
+	  		<field name="city" canNew="true" onChange="action-address-onchange-city"/>
+	  		<field name="state" canNew="true" onChange="action-address-onchage-state"/>
+	  		<field name="country" canNew="true"/>
 	  		<field name="pinCode" />
 	  		
 	  	</panel>	
 	  </form>
+	  
+	  <action-record name="action-address-onchange-city" model="com.axelor.gst.db.Address" >
+	  	<field name="state" expr="eval:city.state" if="city.state"/>
+	  	<field name="country" expr="eval:city.country" if="city.country"/> 
+	  </action-record>
+	  
+	  <action-record name="action-address-onchage-state" model="com.axelor.gst.db.Address">
+	  	<field name="country" expr="eval:state.country" if="state.country" />
+	  </action-record>
   
  </object-views>

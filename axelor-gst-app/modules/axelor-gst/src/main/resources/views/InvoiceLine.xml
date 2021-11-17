@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
+
+	<grid name="invoice-line-grid" title="Invoice Lines" model="com.axelor.gst.db.InvoiceLine" >
+		<field name="product" />
+		<field name="hsbn" />
+		<field name="item" />
+		<field name="qty" />
+		<field name="price" />
+		<field name="netAmount" />
+		<field name="gstRate" />
+		<field name="igst" />
+		<field name="sgst" />
+		<field name="cgst" />
+		<field name="grossAmount" />
+		<field name="invoice" />
+	</grid>
+	
+	<form name="invoice-line-form" title="Invoice Line" model="com.axelor.gst.db.InvoiceLine"  >
+		<panel title="Invoice Line Detail">
+			<field name="product" onChange="action-invoice-line-record-product-name"/>
+			<field name="hsbn" />
+			<field name="item" />
+			<field name="qty" onChange="action-invoice-line-method-gst-calc"/>
+			<field name="price" onChange="action-invoice-line-method-gst-calc" />
+			<field name="netAmount" />
+			<field name="gstRate" />
+			<field name="igst" />
+			<field name="sgst" />
+			<field name="cgst" />
+			<field name="grossAmount" />
+			<field name="invoice" />	
+		</panel>
+	</form>
+	
+	<action-record name="action-invoice-line-record-product-name" model="com.axelor.gst.db.InvoiceLine" >
+		<field name="item" expr="eval:product.name" />
+	</action-record>
+	
+	<action-method name="action-invoice-line-method-gst-calc" >
+		<call class="com.axelor.gst.service.GstCalculation" method="allGstCalculation" />
+	</action-method>
+	
+	
+</object-views>
+
+
+
+
+
+
+
+
+
+
+
+
