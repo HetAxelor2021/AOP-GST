@@ -13,7 +13,7 @@
 		<string name="primaryPhone" title="Primary Phone" />
 		<string name="secondaryPhone" title="Secondary Phone" />
 		<many-to-one ref="com.axelor.gst.db.Company" name="company" title="Company" />
-		<many-to-one ref="com.axelor.gst.db.Party" name="party" title="Party" />
+	
 		
 		
 		

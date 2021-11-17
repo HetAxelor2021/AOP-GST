@@ -11,15 +11,16 @@
  	<!-- party-sub-section-party -->
  	<menuitem  title="Party" parent="party-root" name="party-root-party" action="action.gst.root.party" />
  	<action-view name="action.gst.root.party" title="Party" model="com.axelor.gst.db.Party" >
- 		<!-- <view type="grid" name="party-grid" />			
- 		<view type="form" name="party-form" /> -->
+ 		<view type="grid" name="party-grid" />
+ 		<view type="cards" name="party-cards" />			
+ 		<view type="form" name="party-form" />
  	</action-view>	
  	
  	<!-- party-sub-section-contact -->
  	<menuitem title="Contact" parent="party-root" name="party-root-contact" action="action.gst.root.contact" />
  	<action-view name="action.gst.root.contact" title="Contact" model="com.axelor.gst.db.Contact" >
- 		<!-- <view type="grid" name="contact-grid" />
- 		<view type="form" name="contat-form" /> -->
+ 		<view type="grid" name="contact-grid" />
+ 		<view type="form" name="contat-form" />
  	</action-view>
  	
  	
@@ -30,17 +31,32 @@
  	<!-- party-configuration-address -->
  	<menuitem title="Address" name="party-root-configuration-address" parent="party-root-configuration" action="action.gst.root.configuration.address" />
 	<action-view name="action.gst.root.configuration.address" title="Address" model="com.axelor.gst.db.Address" >
-		<!-- <view type="grid" name="address-grid" />
+		<view type="grid" name="address-grid" />
 		<view type="form" name="address-form" />
-		 -->
+		
 	</action-view> 	
  	
  	<!-- party-configuration-city  -->
- <!-- 	<menuitem title="City" name="party-root-configuration-city" parent="party-root-configuration" action="action.gst.root.configuration.city" />
- 	<action-view name="action.gst.root.configuration.city" title="City" model="com.axelor.gst.db.Address" >
- 		
+ 	<menuitem title="City" name="party-root-configuration-city" parent="party-root-configuration" action="action.gst.root.configuration.city" />
+ 	<action-view name="action.gst.root.configuration.city" title="City" model="com.axelor.gst.db.City" >
+ 		<view type="grid" name="city-grid" />
+ 		<view type="form" name="city-form" />
  	</action-view>
-  --> 	
+ 	
+   	<!-- party-configuration-state -->
+   	<menuitem title="State" name="party-root-configuration-state" parent="party-root-configuration" action="action.gst.root.configuration.state" />
+   	<action-view name="action.gst.root.configuration.state" title="State" model="com.axelor.gst.db.State" >
+   		<view type="grid" name="state-grid" />
+   		<view type="form" name="state-form" />
+   		
+   	</action-view>
+  
+  	<!-- party-configuration-country -->
+  	<menuitem title="Country" name="party-root-configuration-country" parent="party-root-configuration" action="action.gst.root.configuration.country" />
+  	<action-view name="action.gst.root.configuration.country" title="Country" model="com.axelor.gst.db.Country" >
+  		<view type="grid" name="country-grid" />
+  		<view type="form" name="country-form" />
+  	</action-view>
   
   
   <!-- section-product  -->
@@ -68,49 +84,49 @@
   	<!-- invoice-sub-section-create-invoice -->
   	<menuitem name="invoice-root-create-invoice" title="Create Invoice" parent="invoice-root" action="action.gst.root.create.invoice" />
   	<action-view name="action.gst.root.create.invoice" title="Create invoice" model="com.axelor.gst.db.Invoice" >
-  		<!-- <view type="grid" name="create-invoice-grid" />
-  		<view type="form" name="create-invoice-form" />
-  		 -->
+  		<view type="grid" name="invoice-grid" />
+  		<view type="form" name="invoice-form" />
+  		
   	
   	</action-view>
   	
   	<!-- invoice-sub-section-draft-invoice -->
   	<menuitem name="invoice-root-draft-invoice" title="Draft invoices" parent="invoice-root" action="action.gst.root.draft.invoices" />
   	<action-view name="action.gst.root.draft.invoice" title="Draft Invoice" model="com.axelor.gst.db.Invoice" >
-  		<!-- <view type="grid" name="draft-invoice-grid" />
-  		<view type="form" name="draft-invoice-form" />
-  		 -->
+  		<view type="grid" name="invoice-grid" />
+  		<view type="form" name="invoice-form" />
+  		<view-param name="search-filters" value="invoice-search-filters" />	
   	</action-view>
   	
   	
   	<!-- invoice-sub-section-validated-invoice -->
   	<menuitem name="invoice-root-validated-invoices" title="Validated invoices" parent="invoice-root" action="action.gst.root.validated.invoices" />
   	<action-view name="action.gst.root.validated.invoices"  title="Validate invoices" model="com.axelor.gst.db.Invoice" >
-  		<!-- <view type="grid" name="validated-invoice-grid" />
-  		<view type="form" name="validated-invoice-form" /> -->
+  		<view type="grid" name="invoice-grid" />
+  		<view type="form" name="invoice-form" /> 
   	</action-view>
   	
   	<!-- invoice-sub-section-paid-invoices -->
   	<menuitem name="invoice-root-paid-invoices" title="Paid invoices" parent="invoice-root" action="action.gst.root.paid.invoices" />
   	<action-view name="action.gst.root.paid.invoices" title="Paid invoices"  model="com.axelor.gst.db.Invoice" >
-  		<!-- <view type="grid" name="paid-invoice-grid" />
-  		<view type="form" name="paid-invoice-form" /> -->
+  		<view type="grid" name="invoice-grid" />
+  		<view type="form" name="invoice-form" /> 
   	</action-view>
   	
   	<!-- invoices-sub-section-cancelled-invoices -->
 	<menuitem name="invoice-root-cancelled-invoices" title="Cancelled Invoices" parent="invoice-root" action="action.gst.root.cancelled.invoices" />
 	<action-view name="action.gst.root.cancelled.invoices" title="Cancelled Invoices" model="com.axelor.gst.db.Invoice" >
-		<!-- <view type="grid" name="cancelled-invoices-grid" />
-		<view type="form" name="cancelled-invoice-form" />
-	 -->
+		<view type="grid" name="invoice-grid" />
+		<view type="form" name="invoice-form" />
+	 
 	</action-view>
 	
 	<!-- all invoices -->
 	<menuitem name="invoice-root-all-invoices" title="All Invoices" parent="invoice-root" action="action.gst.root.all.invoices" />
 	<action-view name="action.gst.root.all.invoices" title="All invoices" model="com.axelor.gst.db.Invoice" >
-		<!-- <view type="kanban" name="all-invoices-kanban" />
-		<view type="grid" name="all-invoices-grid" />
-		<view type="form" name="all-invoices-form" /> -->
+		<view type="kanban" name="invoice-kanban" />
+		<view type="grid" name="invoice-grid" />
+		<view type="form" name="invoice-form" />
 	</action-view>  	
   	
   	

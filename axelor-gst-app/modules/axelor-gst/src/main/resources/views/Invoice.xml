@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
+	
+	<grid name="invoice-grid" title="Invoices" model="com.axelor.gst.db.Invoice" >
+		<field name="status" />
+		<field name="company" />
+		<field name="reference" />
+		<field name="dateInvoice" />
+		<field name="priority" />
+		<field name="party" />
+		<field name="partyContact" />
+		<field name="invoiceAddress" />
+		<field name="shippingAddress" />
+		<field name="useInvoiceAddressShipping" />
+		<field name="netAmount" />
+		<field name="netIGST" />
+		<field name="netCSGT" />
+		<field name="netSGST" />
+		<field name="grossAmount" />
+		<field name="invoiceItemsList" />
+	</grid>
+	
+	<kanban columnBy="status" model="com.axelor.gst.db.Invoice" sequenceBy="priority" title="Invoices" name="invoice-kanban" 
+		draggable="true" onMove="" onNew="" limit="2" 
+	>
+		
+		<field name="company" />
+		<field name="reference" />
+		<field name="dateInvoice" />
+		
+		<field name="party" />
+		<field name="partyContact" />
+		<field name="invoiceAddress" />
+		<field name="shippingAddress" />
+		<field name="useInvoiceAddressShipping" />
+		<field name="netAmount" />
+		<field name="netIGST" />
+		<field name="netCSGT" />
+		<field name="netSGST" />
+		<field name="grossAmount" />
+		<field name="invoiceItemsList" />
+		<template>
+			<![CDATA[
+				<div>
+					<h4>Company Name:</h4>
+					<h5>{{record.company}}</h5>
+					<br />
+					<h4>Date Invoice:</h4>
+					<h5>{{record.dateInvoice</h5>
+					<br />
+					<h4>Party Name:</h4>
+					<h5>{{record.party}}</h5>
+					<br />
+					<h4>Party Contact:</h4>
+					<h5>{{record.partyContact}}</h5>
+					<br />
+					<h4>GrossAmount:</h4>
+					<h5>{{record.grossAmount}}</h5>
+					<br />
+					<h4>Invoice Item List:</h4>
+					<h5>{{record.invoiceItemList</h5>
+				</div>
+				
+			]]>
+		</template>
+	
+	</kanban>
+	
+	<form name="invoice-form" title="Invoice" model="com.axelor.gst.db.Invoice" >
+			<panel title="Invoice" >
+				<field name="status" />
+				<field name="company" />
+				<field name="reference" />
+				<field name="dateInvoice" />
+				<field name="priority" />
+				<field name="party" />
+				<field name="partyContact" />
+				<field name="invoiceAddress" />
+				<field name="shippingAddress" />
+				<field name="useInvoiceAddressShipping" />
+				<field name="netAmount" />
+				<field name="netIGST" />
+				<field name="netCSGT" />
+				<field name="netSGST" />
+				<field name="grossAmount" />
+				<panel-related field="invoiceItemsList" />
+		</panel>
+	</form>
+	
+	
+	<search-filters name="invoice-search-filters" model="com.axelor.gst.db.Invoice" title="Invoices" >
+		<field name="status" hidden="true" />
+		<filter title="status filter" >
+			<domain>self.status == "draft"</domain>
+		</filter>
+	</search-filters>
+  
+ </object-views>

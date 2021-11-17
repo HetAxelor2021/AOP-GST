@@ -11,9 +11,9 @@
 	<entity name="Company" sequential="true" >
 		<string name="name" title="Name" sequence="company.order.seq"/>
 		<many-to-one ref="com.axelor.meta.db.MetaFile" name="logo" />
-		<one-to-many ref="com.axelor.gst.db.Contact" name="contactList" title="List of Contact" mappedBy="company"/>
+		<one-to-many ref="com.axelor.gst.db.Contact" name="contactList" title="List of Contact" />
 		<string name="gstIn" title="GSTIN" min="15" max="15" />
-		<one-to-many ref="com.axelor.gst.db.BankAccount" name="bankAccountList" title="List of Account" mappedBy="company" />
+		<one-to-many ref="com.axelor.gst.db.BankAccount" name="bankAccountList" title="List of Account"/>
 		<many-to-one ref="com.axelor.gst.db.Address" name="address" title="Address" />
 		
 		

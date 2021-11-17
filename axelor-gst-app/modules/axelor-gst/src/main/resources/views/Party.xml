@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
+	
+	<cards name="party-cards" model="com.axelor.gst.db.Party" title="Party Cards" width="300px" >
+		<field name="reference" />
+		<field name="name" />
+		<field name="type" />
+		<field name="customer" />
+		<field name="supplier" />
+		<field name="gstIn" />
+		<field name="contactList" />
+		<field name="addressList" />
+		<template>
+			<![CDATA[
+				
+				<div class="">
+					<strong>{{reference}}</strong>
+					<br/>
+					<strong>{{name}}</strong>
+					<br/>
+					<strong>{{type}}</strong>
+					<br/>
+					<strong>{{customer}}</strong>
+					<br/>
+					<strong>{{supplier}}</strong>
+					<br/>
+					<strong>{{gstIn}}</strong>
+					<br/>
+					<strong>{{contactList}}</strong>
+					<br/>
+					<strong>{{addressList}}</strong>
+					
+				</div>
+			
+			]]>
+		
+		</template>
+	</cards>
+	
+	
+	<grid name="party-grid" title="Parties" model="com.axelor.gst.db.Party" >
+		<field name="reference" />
+		<field name="name" />
+		<field name="type" />
+		<field name="customer" />
+		<field name="supplier" />
+		<field name="gstIn" />
+		<field name="contactList" />
+		<field name="addressList" />
+		
+	</grid>
+	
+	
+	<form name="party-form" title="Party" model="com.axelor.gst.db.Party" >
+		<panel>
+			<field name="reference" />
+			<field name="name" />
+			<field name="type" />
+			<field name="customer" />
+			<field name="supplier" />
+			<field name="gstIn" />
+			
+		</panel>
+		<panel-tabs>
+			<panel title="Contact Details">
+				<field name="contactList" >
+					<editor x-show-title="true" >
+						<field  name="name" />
+						<field name="type" colSpan="12" />
+						<field name="primaryEmail" colSpan="6" />
+						<field name="primaryPhone" colSpan="6" />
+						<field name="secondaryEmail" colSpan="6" />
+						<field name="secondaryPhone" colSpan="6" />
+						
+					</editor>
+				
+				</field>
+			</panel>
+			<panel title="Address Details" >
+				<field name="addressDetails" >
+					<editor x-show-title="true" >
+						<field name="type" />
+						<field name="line1" />
+						<field name="line2" />
+						<field name="city" />
+						<field name="state" />
+						<field name="country" />
+						<field name="pinCode" />
+						<field name="party" />
+					</editor>
+				</field>
+			</panel>
+		</panel-tabs>
+	</form>
+ </object-views>

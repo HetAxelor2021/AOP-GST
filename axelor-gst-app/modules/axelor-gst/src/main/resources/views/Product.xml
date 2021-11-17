@@ -15,7 +15,7 @@
 		<field name="gstRate" />
 	</grid>
 	
-	<form name="product-form" model="com.axelor-gst.db.Product" title="Product" >
+	<form name="product-form" model="com.axelor.gst.db.Product" title="Product" >
 		<panel title="Details of Product">
 			<field name="name" />
 			<field name="code" />
@@ -28,5 +28,41 @@
 		</panel>
 	</form>
 	
+	<cards name="product-cards" model="com.axelor.gst.db.Product" title="Product Cards" width="300px" >
+		<field name="name" />
+		<field name="code" />
+		<field name="hsbn" />
+		<field name="category" />
+		<field name="salePrice" />
+		<field name="costPrice" />
+		<field name="image" />
+		<field name="gstRate" />
+		<template>
+		<![CDATA[
+			<div class="span4 card-image">
+				<img ng-src="{{$image(null,'image')}}" />
+			</div>
+			<div class="span8">
+			<strong>{{name}}</strong>
+			<br/>
+			<strong>{{code}}</strong>
+			<br/>
+			<strong>{{hsbn}}</strong>
+			<br/>
+			<strong>{{category}}</strong>
+			<br />
+			<strong>{{salePrice}}</strong>
+			<strong>{{costPrice}}</strong>
+			<br/>
+			<strong>{{image}}</strong>
+			<br />
+			<strong>{{gstRate}}</strong>
+			</div>
+		
+		]]>
+			
+		</template>
+	
+	</cards>
   
  </object-views>

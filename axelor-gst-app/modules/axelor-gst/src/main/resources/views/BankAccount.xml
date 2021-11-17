@@ -14,7 +14,7 @@
 	</grid>
 	
 	<form name="bank-account-form" title="Bank Account Details" model="com.axelor.gst.db.BankAccount">
-		<panel>
+		<panel title="Bank Account Detail">
 			<field name="bank" />
 			<field name="accountNo" />
 			<field name="ifsc" />

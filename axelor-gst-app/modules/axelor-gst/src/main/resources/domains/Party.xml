@@ -13,9 +13,9 @@
 		<string name="type" title="Type" selection="gst.party.type.select" />
 		<boolean name="customer" title="Customer" />
 		<boolean name="supplier" title="Supplier" />
-		<string name="gstin" title="GSTIN" min="15" max="15" />
-		<one-to-many name="contactList" ref="com.axelor.gst.db.Contact" title="List of Contact" mappedBy="party"/>
-		<one-to-many name="addressList" ref="com.axelor.gst.db.Address" title="List of Address" mappedBy="party"/>
+		<string name="gstIn" title="GSTIN" min="15" max="15" />
+		<one-to-many name="contactList" ref="com.axelor.gst.db.Contact" title="List of Contact" />
+		<one-to-many name="addressList" ref="com.axelor.gst.db.Address" title="List of Address" />
 		
 	</entity>
 </domain-models>

@@ -15,7 +15,7 @@
 	</grid>
 	
 	<form name="company-form" title="Company" model="com.axelor.gst.db.Company" >
-		<panel>
+		<panel title="Company Detail">
 			<field name="name" />
 			<field name="logo" widget="image" />
 			<field name="gstIn" />
@@ -23,7 +23,7 @@
 			<field name="address" />
 			
 		</panel>
-		<panel>
+		<panel title="Contact Details">
 			<field name="contactList" canNew="true" colSpan="12" >
 				<editor x-show-title="true" >
 					<field  name="name" />
