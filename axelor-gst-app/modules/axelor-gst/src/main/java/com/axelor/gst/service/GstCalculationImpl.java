@@ -29,6 +29,7 @@ public class GstCalculationImpl implements GstCalculation{
 	@Override
 	public BigDecimal igstCalc() {
 		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

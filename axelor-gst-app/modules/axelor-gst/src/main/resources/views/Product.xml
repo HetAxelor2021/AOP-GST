@@ -5,6 +5,10 @@
   http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
 	
 	<grid name="product-grid" model="com.axelor.gst.db.Product" title="Products">
+		<toolbar>
+			<button name="createInvoice" icon="fas fa-plus-square" onClick="action-product-create-invoice-onclick"/>
+			<button name="btnPrintInvoice" icon="fa-print" onClick="print-invoice-details" />
+		</toolbar>
 		<field name="name" />
 		<field name="code" />
 		<field name="hsbn" />
@@ -49,7 +53,7 @@
 			<br/>
 			<strong>{{hsbn}}</strong>
 			<br/>
-			<strong>{{category}}</strong>
+			<strong>{{category.name}}</strong>
 			<br />
 			<strong>{{salePrice}}</strong>
 			<strong>{{costPrice}}</strong>

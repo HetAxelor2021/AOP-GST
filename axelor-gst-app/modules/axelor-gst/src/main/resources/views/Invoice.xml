@@ -38,7 +38,7 @@
 		<field name="useInvoiceAddressShipping" />
 		<field name="netAmount" />
 		<field name="netIGST" />
-		<field name="netCSGT" />
+		<field name="netCGST" />
 		<field name="netSGST" />
 		<field name="grossAmount" />
 		<field name="invoiceItemsList" />
@@ -46,22 +46,22 @@
 			<![CDATA[
 				<div>
 					<h4>Company Name:</h4>
-					<h5>{{record.company}}</h5>
+					<h5>{{company.name}}</h5>
 					<br />
 					<h4>Date Invoice:</h4>
-					<h5>{{record.dateInvoice</h5>
+					<h5>{{dateInvoice}}</h5>
 					<br />
 					<h4>Party Name:</h4>
-					<h5>{{record.party}}</h5>
+					<h5>{{party.name}}</h5>
 					<br />
 					<h4>Party Contact:</h4>
-					<h5>{{record.partyContact}}</h5>
+					<h5>{{partyContact.name}}</h5>
 					<br />
 					<h4>GrossAmount:</h4>
-					<h5>{{record.grossAmount}}</h5>
+					<h5>{{grossAmount}}</h5>
 					<br />
 					<h4>Invoice Item List:</h4>
-					<h5>{{record.invoiceItemList</h5>
+					<h5>{{invoiceItemList.size()}}</h5>
 				</div>
 				
 			]]>
@@ -70,6 +70,9 @@
 	</kanban>
 	
 	<form name="invoice-form" title="Invoice" model="com.axelor.gst.db.Invoice" onNew="action-invoice-form-onnew,action-invoice-status-onchange-method" onLoad="action-invoice-status-start-onload, action-invoice-status-onchange-method">
+			<toolbar>
+				<button name="btnPrintInvoice" icon="fa-print" onClick="print-invoice-details" />
+			</toolbar>
 			<panel title="Invoice" >
 				<field name="status" widget="navSelect" colSpan="12" />
 				
@@ -89,12 +92,16 @@
 				<field name="useInvoiceAddressShipping" />
 				<field name="netAmount" />
 				<field name="netIGST" />
-				<field name="netCSGT" />
+				<field name="netCGST" />
 				<field name="netSGST" />
 				<field name="grossAmount" />
-				<panel-related field="invoiceItemsList" />
+				<panel-related field="invoiceItemsList" onChange="action-invoice-invoiceitemlist-onmethod"/>
 		</panel>
 	</form>
+	
+	<action-method name="action-invoice-invoiceitemlist-onmethod"  >
+		<call class="com.axelor.gst.web.InvoiceController" method="invoiceListCalc" />
+	</action-method>
 	
 	
 	<action-record name="action-invoice-form-party-onchange" model="com.axelor.gst.db.Invoice" >
