@@ -8,17 +8,17 @@
 	<sequence name="invoice.order.seq" initial="1" increment="1" padding="10" prefix="ABC" />
 	
 	<entity name="Invoice" sequential="true">
-		<string name="status" title="Status" selection="gst.invoice.status.select"/>
+		<string name="status" title="Status"  selection="gst.invoice.status.select" readonly="true"/>
 		<many-to-one name="company" title="Company" ref="com.axelor.gst.db.Company" required="true" />
 		<string name="reference" readonly="true" sequence="invoice.order.seq" title="reference" />
 		<datetime name="dateInvoice" title="DateInvoice"  />
-		
+		<integer name="statusValue" title="Status value" />
 		<integer name="priority" />
 		<many-to-one name="party" title="Party" ref="com.axelor.gst.db.Party" required="true"/>
 		<many-to-one name="partyContact" title="Party Contact" ref="com.axelor.gst.db.Contact" />
 		<many-to-one name="invoiceAddress" title="Invoice Address" ref="com.axelor.gst.db.Address" />
 		<many-to-one name="shippingAddress" title="Shipping Address" ref="com.axelor.gst.db.Address" />
-		<boolean name="useInvoiceAddressShipping" title="Use Invoic address as shipping" readonly="true" default="true" />
+		<boolean name="useInvoiceAddressShipping" title="Use Invoice address as shipping"  default="true" />
 		<decimal name="netAmount" title="Net Amount" readonly="true" />
 		<decimal name="netIGST" title="Net IGST" readonly="true" />
 		<decimal name="netCSGT" title="Net CSGT" readonly="true" />

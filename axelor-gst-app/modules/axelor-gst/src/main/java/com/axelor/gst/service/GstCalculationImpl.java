@@ -53,10 +53,9 @@ public class GstCalculationImpl implements GstCalculation{
 	@Override
 	public void allGstCalculation(int qty, BigDecimal price) {
 		// TODO Auto-generated method stub
-		BigDecimal netAmount =  netAmountCalc(qty, price);
-		BigDecimal gstRate = gstRateCalc();
+	
 		
-		return null;
+		
 	}
 
 }

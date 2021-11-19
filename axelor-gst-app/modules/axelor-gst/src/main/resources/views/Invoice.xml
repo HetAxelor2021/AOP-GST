@@ -69,17 +69,23 @@
 	
 	</kanban>
 	
-	<form name="invoice-form" title="Invoice" model="com.axelor.gst.db.Invoice" >
+	<form name="invoice-form" title="Invoice" model="com.axelor.gst.db.Invoice" onNew="action-invoice-form-onnew,action-invoice-status-onchange-method" onLoad="action-invoice-status-start-onload, action-invoice-status-onchange-method">
 			<panel title="Invoice" >
-				<field name="status" widget="navSelect" colSpan="12"/>
-				<field name="company" />
+				<field name="status" widget="navSelect" colSpan="12" />
+				
+				<!-- <field name="statusValue"  colSpan="12" /> -->
+				<button name="btnDraft" title="Draft" onClick="action-draft-invoice-onclick,action-invoice-status-onchange-method" hideIf="statusValue>=1"/>
+				<button name="btnValidated" title="Validated" onClick="action-validated-invoice-onclick,action-invoice-status-onchange-method" hideIf="statusValue>=2"/>
+				<button name="btnPaid" title="paid" onClick="action-paid-invoice-onclick,action-invoice-status-onchange-method" hideIf="statusValue>=3"/>
+				<button name="btnCancelled" title="Cancelled" onClick="action-cancelled-invoice-onclick,action-invoice-status-onchange-method" hideIf="statusValue>=4" />
+				<field name="company" canNew="true" />
 				<field name="reference" />
 				<field name="dateInvoice" />
 				<field name="priority" />
-				<field name="party" />
+				<field name="party" canNew="true" onChange="action-invoice-form-party-onchange"/>
 				<field name="partyContact" />
 				<field name="invoiceAddress" />
-				<field name="shippingAddress" />
+				<field name="shippingAddress" hideIf="useInvoiceAddressShipping"/>
 				<field name="useInvoiceAddressShipping" />
 				<field name="netAmount" />
 				<field name="netIGST" />
@@ -90,6 +96,59 @@
 		</panel>
 	</form>
 	
+	
+	<action-record name="action-invoice-form-party-onchange" model="com.axelor.gst.db.Invoice" >
+		<field name="partyContact" expr="eval:null" />
+		<field name="invoiceAddress" expr="eval:null" />
+		<field name="shippingAddress" expr="eval:null" />
+		<field name="partyContact" expr="eval:party.contactList.get(0)"  if="party.contactList.size() > 0"/>
+		<field name="invoiceAddress" expr="eval:party.addressList.get(0)" if="party.addressList.get(0).type.equals('default') || party.addressList.get(0).type.equals('invoice')"/> 
+		<field name="shippingAddress" expr="eval:party.addressList.get(0)" if="  !useInvoiceAddressShipping &amp;&amp; (party.addressList.get(0).type.equals('shipping') || party.addressList.get(0).type.equals('other'))" />
+		
+	</action-record>
+	
+	
+	
+	<action-record name="action-invoice-form-onnew" model="com.axelor.gst.db.Invoice" >
+		<field name="dateInvoice" expr="eval:__datetime__" />
+		<field name="status" expr="eval:statusContext" />
+		
+	</action-record>
+	<!-- 
+	<action-record name="action-invoice-status-onchange" model="com.axelor.gst.db.Invoice">
+		<field name="statusValue" expr="action: action-invoice-status-onchange-method" />
+	</action-record> -->
+	
+	
+	
+	
+	<action-record name="action-invoice-status-start-onload" model="com.axelor.gst.db.Invoice">
+		<field name="status" expr="eval:statusContext" />
+		
+		
+	
+	</action-record>
+	
+	<action-method name="action-invoice-status-onchange-method" >
+		<call class="com.axelor.gst.web.InvoiceController" method="statusValueProvider" />
+	</action-method>
+	
+	<action-record name="action-draft-invoice-onclick" model="com.axelor.gst.db.Invoice" >
+		<field name="status" expr="draft" />
+	</action-record>
+	
+	
+	<action-record name="action-validated-invoice-onclick" model="com.axelor.gst.db.Invoice" >
+		<field name="status" expr="validated" />
+	</action-record>
+	
+	<action-record name="action-paid-invoice-onclick" model="com.axelor.gst.db.Invoice" >
+		<field name="status" expr="paid" />
+	</action-record>
+	 
+	<action-record name="action-cancelled-invoice-onclick" model="com.axelor.gst.db.Invoice" >
+		<field name="status" expr="cancelled" />
+	</action-record>
 	
 	<search-filters name="invoice-search-filters" model="com.axelor.gst.db.Invoice" title="Invoices" >
 		<field name="priority"  />

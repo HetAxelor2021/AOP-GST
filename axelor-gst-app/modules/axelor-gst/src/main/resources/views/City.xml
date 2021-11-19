@@ -13,9 +13,29 @@
 	<form name="city-form" title="City" model="com.axelor.gst.db.City" >
 		<panel title="City Details" >
 			<field name="name" />
-			<field name="state" />
-			<field name="country" />
+			<field name="state" onChange="action-city-onchange-state" />
+			<field name="country" onChange="action-city-onchange-country" />
 		</panel>
 	</form>
+	
+	
+	
+	
+<!-- 	 <action-record name="action-city-onchange-state" model="com.axelor.gst.db.Address" >
+	  	<field name="_parent.state.name" expr="eval:__this__.state" />
+	  	<field name="_parent.country.name" expr="eval:__this__.country" /> 
+	  </action-record>
+	 
+ -->
+	 <!-- <action-method name="action-city-onchange-state" >
+		<call class="com.axelor.gst.web.InvoiceController" method="cityData" />
+	</action-method>
+	 -->
+ 	  
+<!--   
+   <action-record name="action-city-onchage-country" model="com.axelor.gst.db.Address">
+	  	<field name="country" expr="eval:country" if="state.country" />
+	  </action-record>
+  -->
   
  </object-views>
