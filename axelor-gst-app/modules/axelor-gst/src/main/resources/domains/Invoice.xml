@@ -24,7 +24,7 @@
 		<decimal name="netCGST" title="Net CGST" readonly="true" />
 		<decimal name="netSGST" title="Net SGST" readonly="true" />
 		<decimal name="grossAmount" title="Gross Amount" readonly="true" />
-		<one-to-many ref="com.axelor.gst.db.InvoiceLine" name="invoiceItemsList" title="List of Invoice Items" mappedBy="invoice" />
+		<one-to-many ref="com.axelor.gst.db.InvoiceLine" name="invoiceItemsList" title="List of Invoice Items"  mappedBy="invoice" />
 		 
 	</entity>
 </domain-models>

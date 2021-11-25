@@ -69,35 +69,63 @@
 	
 	</kanban>
 	
-	<form name="invoice-form" title="Invoice" model="com.axelor.gst.db.Invoice" onNew="action-invoice-form-onnew,action-invoice-status-onchange-method" onLoad="action-invoice-status-start-onload, action-invoice-status-onchange-method">
+	
+	<form name="invoice-form" title="Invoice" model="com.axelor.gst.db.Invoice" width="large" onNew="action-invoice-form-onnew" onLoad=" action-invoice-invoiceitemlist-onmethod">
+	<!-- <form name="invoice-form" title="Invoice" model="com.axelor.gst.db.Invoice" width="large" onNew="action-invoice-attrs-btn-status, action-invoice-form-onnew,action-invoice-status-onchange-method" onLoad="action-invoice-attrs-btn-status, action-invoice-invoiceitemlist-onmethod, action-invoice-status-start-onload, action-invoice-status-onchange-method"> -->
 			<toolbar>
 				<button name="btnPrintInvoice" icon="fa-print" onClick="print-invoice-details" />
 			</toolbar>
-			<panel title="Invoice" >
-				<field name="status" widget="navSelect" colSpan="12" />
+			<!-- <panel name="mainPanel" > -->
 				
-				<!-- <field name="statusValue"  colSpan="12" /> -->
-				<button name="btnDraft" title="Draft" onClick="action-draft-invoice-onclick,action-invoice-status-onchange-method" hideIf="statusValue>=1"/>
-				<button name="btnValidated" title="Validated" onClick="action-validated-invoice-onclick,action-invoice-status-onchange-method" hideIf="statusValue>=2"/>
-				<button name="btnPaid" title="paid" onClick="action-paid-invoice-onclick,action-invoice-status-onchange-method" hideIf="statusValue>=3"/>
-				<button name="btnCancelled" title="Cancelled" onClick="action-cancelled-invoice-onclick,action-invoice-status-onchange-method" hideIf="statusValue>=4" />
-				<field name="company" canNew="true" />
-				<field name="reference" />
-				<field name="dateInvoice" />
-				<field name="priority" />
-				<field name="party" canNew="true" onChange="action-invoice-form-party-onchange"/>
-				<field name="partyContact" />
-				<field name="invoiceAddress" />
-				<field name="shippingAddress" hideIf="useInvoiceAddressShipping"/>
-				<field name="useInvoiceAddressShipping" />
-				<field name="netAmount" />
-				<field name="netIGST" />
-				<field name="netCGST" />
-				<field name="netSGST" />
-				<field name="grossAmount" />
-				<panel-related field="invoiceItemsList" onChange="action-invoice-invoiceitemlist-onmethod"/>
-		</panel>
+					
+					<panel title="Invoice" >
+						<field name="status" widget="navSelect" onChange="" showTitle="false" colSpan="12" />
+						
+						<!-- <field name="statusValue"  colSpan="12" /> -->
+						<field name="company"  canNew="true" />
+						<field name="reference" />
+						<field name="dateInvoice" />
+						<field name="priority" />
+						<field name="party" canNew="true" onChange="action-invoice-form-party-onchange"/>
+						<field name="partyContact" />
+						<field name="invoiceAddress" />
+						<field name="shippingAddress" hideIf="useInvoiceAddressShipping"/>
+						<field name="useInvoiceAddressShipping" />
+						<field name="netAmount" />
+						<field name="netIGST" />
+						<field name="netCGST" />
+						<field name="netSGST" />
+						<field name="grossAmount" />
+						<panel-related field="invoiceItemsList"  colSpan="12" onChange="action-invoice-invoiceitemlist-onmethod"/>
+				</panel>
+				<panel sidebar="true" stacked="true">
+				
+				
+				
+						<button name="btnDraft" title="Draft" onClick="action-draft-invoice-onclick, save" showIf="!status || status == 'cancelled' "/>
+						<button name="btnValidated"   title="Validated" onClick="action-validated-invoice-onclick, save" showIf="!status || status == 'draft'  || status=='cancelled' " />
+						<button name="btnPaid"   title="Paid" onClick="action-paid-invoice-onclick, save" showIf="!status ||  status=='validated' || status=='cancelled' "/>
+						<button name="btnCancelled" title="Cancelled" onClick="action-cancelled-invoice-onclick, save" showIf="status=='draft' || status=='validated' || status=='paid' " /> 
+				
+				
+				<!-- 		<button name="btnDraft" title="Draft" onClick="action-draft-invoice-onclick, save" showIf="!statusContext || statusContext == 'cancelled' "/>
+						<button name="btnValidated"   title="Validated" onClick="action-validated-invoice-onclick, save" showIf="!statusContext || statusContext == 'draft'  || statusContext=='cancelled' " />
+						<button name="btnPaid"   title="Paid" onClick="action-paid-invoice-onclick, save" showIf="!statusContext ||  statusContext=='validated' || statusContext=='cancelled' "/>
+						<button name="btnCancelled" title="Cancelled" onClick="action-cancelled-invoice-onclick, save" showIf="statusContext=='draft' || statusContext=='validated' || statusContext=='paid' " /> 
+				 -->	
+				</panel>
+		<!-- </panel> -->
 	</form>
+	
+	
+	
+	
+	
+	
+	<action-method name="action-invoice-method-btn-update">
+		<call class="com.axelor.gst.web.InvoiceController" method="btnUpdater" />
+	</action-method>
+	
 	
 	<action-method name="action-invoice-invoiceitemlist-onmethod"  >
 		<call class="com.axelor.gst.web.InvoiceController" method="invoiceListCalc" />
@@ -118,8 +146,8 @@
 	
 	<action-record name="action-invoice-form-onnew" model="com.axelor.gst.db.Invoice" >
 		<field name="dateInvoice" expr="eval:__datetime__" />
-		<field name="status" expr="eval:statusContext" />
-		
+		<!-- <field name="status" expr="eval:statusContext" /> -->
+			
 	</action-record>
 	<!-- 
 	<action-record name="action-invoice-status-onchange" model="com.axelor.gst.db.Invoice">
@@ -128,20 +156,22 @@
 	
 	
 	
-	
+	<!-- 
 	<action-record name="action-invoice-status-start-onload" model="com.axelor.gst.db.Invoice">
 		<field name="status" expr="eval:statusContext" />
 		
 		
 	
 	</action-record>
-	
-	<action-method name="action-invoice-status-onchange-method" >
+	 -->
+	<!-- <action-method name="action-invoice-status-onchange-method" >
 		<call class="com.axelor.gst.web.InvoiceController" method="statusValueProvider" />
 	</action-method>
-	
+	 -->
 	<action-record name="action-draft-invoice-onclick" model="com.axelor.gst.db.Invoice" >
 		<field name="status" expr="draft" />
+		<!-- <field name="statusContext" expr="draft" /> -->
+	
 	</action-record>
 	
 	
@@ -157,11 +187,11 @@
 		<field name="status" expr="cancelled" />
 	</action-record>
 	
-	<search-filters name="invoice-search-filters" model="com.axelor.gst.db.Invoice" title="Invoices" >
+	<!-- <search-filters name="invoice-search-filters" model="com.axelor.gst.db.Invoice" title="Invoices" >
 		<field name="priority"  />
 		<filter title="status filter" >
 			<domain>priority == "2"</domain>
 		</filter>
 	</search-filters>
-  
+   -->
  </object-views>

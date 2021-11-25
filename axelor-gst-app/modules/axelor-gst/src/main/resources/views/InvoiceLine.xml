@@ -21,9 +21,7 @@
 	</grid>
 	
 	<form name="invoice-line-form" title="Invoice Line" model="com.axelor.gst.db.InvoiceLine" onNew="save, action-invoice-line-invoice-onnew" >
-		<toolbar>
-			<button name="btnPrintInvoice" icon="fa-print" onClick="print-invoice-details" />
-		</toolbar>
+		
 		<panel title="Invoice Line Detail">
 			<field name="product" onChange="action-invoice-line-method-product-name, action-invoice-line-group-gst-onchange"/>
 			<field name="hsbn" />
@@ -39,6 +37,8 @@
 		
 		</panel>
 	</form>
+	
+	
 	
 	<action-record name="action-invoice-line-invoice-onnew" model="com.axelor.gst.db.InvoiceLine">
 		<field name="invoice" expr="eval:__parent__" />

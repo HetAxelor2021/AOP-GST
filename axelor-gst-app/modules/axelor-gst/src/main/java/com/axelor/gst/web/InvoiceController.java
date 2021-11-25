@@ -1,19 +1,23 @@
 package com.axelor.gst.web;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.axelor.gst.db.Address;
 import com.axelor.gst.db.City;
 import com.axelor.gst.db.Company;
+import com.axelor.gst.db.Country;
 import com.axelor.gst.db.Invoice;
 import com.axelor.gst.db.InvoiceLine;
 import com.axelor.gst.db.Product;
 import com.axelor.gst.db.State;
 import com.axelor.gst.db.repo.AddressRepository;
 import com.axelor.gst.db.repo.CityRepository;
+import com.axelor.gst.db.repo.CountryRepository;
 import com.axelor.gst.db.repo.InvoiceLineRepository;
 import com.axelor.gst.db.repo.InvoiceRepository;
+import com.axelor.gst.db.repo.StateRepository;
 import com.axelor.gst.service.GstCalculation;
 import com.axelor.inject.Beans;
 import com.axelor.rpc.ActionRequest;
@@ -54,21 +58,38 @@ public class InvoiceController {
 		
 	}
 	
+	  public void btnUpdater(ActionRequest request, ActionResponse response) {
+	  Context context = request.getContext();
+	  
+	  Invoice invoice = context.asType(Invoice.class); response.setReload(true);
+		/* response.setValue("statusContext", ); */
+//	  response.setValue("statusContext", "draft");
+//	  context.replace("statusConetxt", "draft");
+//	  
+//	  context.put("statusContext", "draft");
+	  }
+	 
+	
 	public void cityData(ActionRequest request, ActionResponse response) {
 		Context context= request.getContext();
 		
 
+		Address address = context.asType(Address.class);
 		
-		
-		
-		
-		
-		City city = context.asType(City.class);
+//		if(address.getId() != null) {
+//			address = Beans.get(AddressRepository.class).find(address.getId());
+//		}
 //		Address address = context.asType(Address.class);
 //		
+		
+		//		 
+		
+		
+		City city = address.getCity();
+		
+//	 		  if(city.getId() != null) { city = Beans.get(CityRepository.class).find(city.getId()); }
 	
-		  if(city.getId() != null) { city = Beans.get(CityRepository.class).find(city.getId()); }
-		 
+		
 		
 		System.out.println("hello in city: "+city.toString());
 		String cityName = city.getName();
@@ -76,60 +97,72 @@ public class InvoiceController {
 		String countryName = city.getCountry();
 		
 		
-		Address address =context.getParent().asType(Address.class); 
-		
-		if(address.getId() != null) {
-			address = Beans.get(AddressRepository.class).find(address.getId());
-		}
-		
-		address.getState().setName(stateName);
-		System.out.println("state name after changes: "+address.getState());
+//		Address address =context.getParent().asType(Address.class); 
 		
 		
-		System.out.println("r");
-		System.out.println(context.getClass());
-	
-//		response.setValue(state);
-	
-		
-//		System.out.println("response.getData: "+response.setV);
-		System.out.println("response.getclass: "+address.getState().toString());
 		State state = address.getState();
 		
-		
-	}
-	
-	public void statusValueProvider(ActionRequest request, ActionResponse response) {
-		Context context = request.getContext();
-		
-		Invoice invoice = context.asType(Invoice.class);
-		int ans= 0;
-		if(invoice.getId() != null) {
-			invoice = Beans.get(InvoiceRepository.class).find(invoice.getId());
-		}
-		System.out.println("hello we are in invoicecontroller "+invoice.getStatus());
-		if(invoice.getStatus().equals("draft")) {
-			System.out.println("draft: " );	
-			
-			ans =  1;
-		}
-		if(invoice.getStatus().equals("validated")) {
-			System.out.println("validated: " );
-			ans =  2;
-		}
-		if(invoice.getStatus().equals("paid")) {
-			System.out.println("paid: " );
-			ans =  3;
-		}
-		if(invoice.getStatus().equals("cancelled")) {
-			System.out.println("cancelled: " );
-			ans =  4;
+		if(state.getId() != null) {
+			state = Beans.get(StateRepository.class).find(state.getId());
 		}
 		
-		response.setValue("statusValue", ans);
+		Country country = address.getCountry();
+		if(country.getId() != null) {
+			country = Beans.get(CountryRepository.class).find(country.getId());
+		}
+		
+		state.setName(stateName);
+		state.setCountry(countryName);
+		
+		
+		country.setName(countryName);
+//		response.setValue("state", stateName);
+//		response.setValue("country", countryName);
+				response.setValue("state",state);
+		response.setValue("country",country);
+//		response.setValues(address);
+		
+		System.out.println(state.toString()+" : "+country.toString());
 
+		
+//		response.setReload(true);
+//		address.getState().setName(stateName);
+//		System.out.println("state name after changes: "+address.getState());
+//		
+//		
+//		System.out.println("r");
+//		System.out.println(context.getClass());
+//	
+////		response.setValue(state);
+//	
+//		
+////		System.out.println("response.getData: "+response.setV);
+//		System.out.println("response.getclass: "+address.getState().toString());
+//		State state = address.getState();
+//		
+		
 	}
 	
+	/*
+	 * public void statusValueProvider(ActionRequest request, ActionResponse
+	 * response) { Context context = request.getContext();
+	 * 
+	 * Invoice invoice = context.asType(Invoice.class); int ans= 0;
+	 * if(invoice.getId() != null) { invoice =
+	 * Beans.get(InvoiceRepository.class).find(invoice.getId()); }
+	 * System.out.println("hello we are in invoicecontroller "+invoice.getStatus());
+	 * if(invoice.getStatus().equals("draft")) { System.out.println("draft: " );
+	 * 
+	 * ans = 1; } if(invoice.getStatus().equals("validated")) {
+	 * System.out.println("validated: " ); ans = 2; }
+	 * if(invoice.getStatus().equals("paid")) { System.out.println("paid: " ); ans =
+	 * 3; } if(invoice.getStatus().equals("cancelled")) {
+	 * System.out.println("cancelled: " ); ans = 4; }
+	 * 
+	 * response.setValue("statusValue", ans);
+	 * 
+	 * }
+	 */	
 	public void itemNameMaker(ActionRequest request, ActionResponse response) {
 		
 		Context context = request.getContext();

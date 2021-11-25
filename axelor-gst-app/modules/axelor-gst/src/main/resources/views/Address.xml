@@ -19,25 +19,29 @@
 	  		<field name="type" />
 	  		<field name="line1" index="true"/>
 	  		<field name="line2" />
-	  		<field name="city" canNew="true" onChange="action-address-onchange-city"/>
-	  		<field name="state" canNew="true" onChange="action-address-onchage-state"/>
-	  		<field name="country" canNew="true"/>
+	  		<!-- <field name="city" canNew="true" />
+	  		<field name="state" canNew="tr /> -->
+	  		<field name="city" canNew="true" onChange="action-address-onchange-city-method"/>
+	  		<field name="state" canNew="true" domain="self.state.name = self.city.state" onChange="action-address-onchage-state"/> 
+	  		<field name="country" canNew="true" domain="self.country.name= self.state.country"/>
 	  		<field name="pinCode" />
-	  		
+	  		<field name="state.name" />
 	  	</panel>	
 	  </form>
 	  
-
+	<action-method name="action-address-onchange-city-method" >
+		<call class="com.axelor.gst.web.InvoiceController" method="cityData" />
+	</action-method>
 	 
-	  <action-record name="action-address-onchange-city" model="com.axelor.gst.db.Address" >
+	<!--   <action-record name="action-address-onchange-city" model="com.axelor.gst.db.Address" >
 	  	
 	  
-	  	<field name="state.name" expr="eval:city.state" if="!city.state.equals('')"/>
-	  	<field name="country.name" expr="eval:city.country" if="!city.country.equals('')"/> 
+	  	<field name="state.name" expr="eval:__this__.city.state" if="!city.state.equals('')"/>
+	  	<field name="country.name" expr="eval:__this__.city.country" if="!city.country.equals('')"/> 
 	  </action-record>
 	  
 	  <action-record name="action-address-onchage-state" model="com.axelor.gst.db.Address">
-	  	<field name="country.name" expr="eval:state.country" if="state.country" />
+	  	<field name="country.name" expr="ev	al:state.country" if="state.country" />
 	  </action-record>
-    
+     -->
  </object-views>
