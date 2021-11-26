@@ -88,7 +88,7 @@
   	<action-view name="action.gst.root.create.invoice" title="Create invoice" model="com.axelor.gst.db.Invoice" >
   		<view type="grid" name="invoice-grid" />
   		<view type="form" name="invoice-form" />
-  		<!-- <context name="statusContext" expr="" /> -->
+  		
   	
   	</action-view>
   	
@@ -100,8 +100,7 @@
   		<view type="form" name="invoice-form" />
   		<view-param name="reload-dotted" value="true"/>
   		<domain>self.status in ('draft')</domain>
-  		<!-- <context name="statusContext" expr="draft" /> -->
-  	<!-- 	<view-param name="search-filters" value="invoice-search-filters" /> -->	
+ 
   	</action-view>
   	
   	
@@ -112,7 +111,7 @@
   		<view type="form" name="invoice-form" />
   		<view-param name="reload-dotted" value="true"/> 
   		<domain>self.status in ('validated')</domain>
-  		<!-- <context name="statusContext" expr="validated" /> -->
+  		
   	</action-view>
   	
   	<!-- invoice-sub-section-paid-invoices -->
@@ -122,7 +121,7 @@
   		<view type="form" name="invoice-form" /> 
   		<view-param name="reload-dotted" value="true"/> 
   		<domain>self.status in ('paid')</domain>
-  		<!-- <context name="statusContext" expr="paid" /> -->
+  		
   	</action-view>
   	
   
@@ -134,7 +133,7 @@
 		<view type="form" name="invoice-form" />
 		<view-param name="reload-dotted" value="true"/> 
   		<domain>self.status in ('cancelled')</domain>
-	 	<!-- <context name="statusContext" expr="cancelled" /> -->
+	 	
 	</action-view>
 	
 	<!-- all invoices -->

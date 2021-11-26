@@ -73,7 +73,7 @@
 	<form name="invoice-form" title="Invoice" model="com.axelor.gst.db.Invoice" width="large" onNew="action-invoice-form-onnew" onLoad=" action-invoice-invoiceitemlist-onmethod">
 	<!-- <form name="invoice-form" title="Invoice" model="com.axelor.gst.db.Invoice" width="large" onNew="action-invoice-attrs-btn-status, action-invoice-form-onnew,action-invoice-status-onchange-method" onLoad="action-invoice-attrs-btn-status, action-invoice-invoiceitemlist-onmethod, action-invoice-status-start-onload, action-invoice-status-onchange-method"> -->
 			<toolbar>
-				<button name="btnPrintInvoice" icon="fa-print" onClick="print-invoice-details" />
+				<button name="btnPrintInvoice" icon="fa-print" onClick="action-invoice-record-filePath-method,save, print-invoices-details" />
 			</toolbar>
 			<!-- <panel name="mainPanel" > -->
 				
@@ -97,6 +97,7 @@
 						<field name="netSGST" />
 						<field name="grossAmount" />
 						<panel-related field="invoiceItemsList"  colSpan="12" onChange="action-invoice-invoiceitemlist-onmethod"/>
+						<field name="filePath" type="string" hidden="true"/>
 				</panel>
 				<panel sidebar="true" stacked="true">
 				
@@ -108,19 +109,32 @@
 						<button name="btnCancelled" title="Cancelled" onClick="action-cancelled-invoice-onclick, save" showIf="status=='draft' || status=='validated' || status=='paid' " /> 
 				
 				
-				<!-- 		<button name="btnDraft" title="Draft" onClick="action-draft-invoice-onclick, save" showIf="!statusContext || statusContext == 'cancelled' "/>
-						<button name="btnValidated"   title="Validated" onClick="action-validated-invoice-onclick, save" showIf="!statusContext || statusContext == 'draft'  || statusContext=='cancelled' " />
-						<button name="btnPaid"   title="Paid" onClick="action-paid-invoice-onclick, save" showIf="!statusContext ||  statusContext=='validated' || statusContext=='cancelled' "/>
-						<button name="btnCancelled" title="Cancelled" onClick="action-cancelled-invoice-onclick, save" showIf="statusContext=='draft' || statusContext=='validated' || statusContext=='paid' " /> 
-				 -->	
 				</panel>
 		<!-- </panel> -->
 	</form>
 	
+	<action-method name="action-invoice-record-filePath-method" >
+		<call class="com.axelor.gst.web.InvoiceController" method="getFilePath" />
+	</action-method>
 	
 	
 	
+	<action-report name="print-old-invoices-details" 
+		design="invoice.rptdesign"
+		output="so-${date}${time}"
+		format="pdf">
+		
+		<param name="invoiceId" expr="eval:id" />	 	
+	</action-report>
 	
+	<action-report name="print-invoices-details" 
+		design="iinvoice.rptdesign"
+		output="so-${date}${time}"
+		format="pdf">
+		
+		<param name="invoiceId" expr="eval:id" />	
+		<param name="filePath" expr="eval:filePath" />
+	</action-report>
 	
 	<action-method name="action-invoice-method-btn-update">
 		<call class="com.axelor.gst.web.InvoiceController" method="btnUpdater" />
@@ -146,31 +160,13 @@
 	
 	<action-record name="action-invoice-form-onnew" model="com.axelor.gst.db.Invoice" >
 		<field name="dateInvoice" expr="eval:__datetime__" />
-		<!-- <field name="status" expr="eval:statusContext" /> -->
+	
 			
 	</action-record>
-	<!-- 
-	<action-record name="action-invoice-status-onchange" model="com.axelor.gst.db.Invoice">
-		<field name="statusValue" expr="action: action-invoice-status-onchange-method" />
-	</action-record> -->
 	
-	
-	
-	<!-- 
-	<action-record name="action-invoice-status-start-onload" model="com.axelor.gst.db.Invoice">
-		<field name="status" expr="eval:statusContext" />
-		
-		
-	
-	</action-record>
-	 -->
-	<!-- <action-method name="action-invoice-status-onchange-method" >
-		<call class="com.axelor.gst.web.InvoiceController" method="statusValueProvider" />
-	</action-method>
-	 -->
 	<action-record name="action-draft-invoice-onclick" model="com.axelor.gst.db.Invoice" >
 		<field name="status" expr="draft" />
-		<!-- <field name="statusContext" expr="draft" /> -->
+		
 	
 	</action-record>
 	
@@ -187,11 +183,4 @@
 		<field name="status" expr="cancelled" />
 	</action-record>
 	
-	<!-- <search-filters name="invoice-search-filters" model="com.axelor.gst.db.Invoice" title="Invoices" >
-		<field name="priority"  />
-		<filter title="status filter" >
-			<domain>priority == "2"</domain>
-		</filter>
-	</search-filters>
-   -->
  </object-views>

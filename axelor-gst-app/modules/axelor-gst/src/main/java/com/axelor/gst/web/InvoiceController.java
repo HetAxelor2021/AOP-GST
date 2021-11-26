@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.axelor.app.AppSettings;
 import com.axelor.gst.db.Address;
 import com.axelor.gst.db.City;
 import com.axelor.gst.db.Company;
@@ -67,6 +68,7 @@ public class InvoiceController {
 //	  context.replace("statusConetxt", "draft");
 //	  
 //	  context.put("statusContext", "draft");
+	  	
 	  }
 	 
 	
@@ -212,6 +214,19 @@ public class InvoiceController {
 		response.setValue("netIGST", netIGST);
 		response.setValue("netCGST", netSGST);
 		response.setValue("grossAmount", grossAmount);
+		
+	}
+	
+	public void getFilePath(ActionRequest request, ActionResponse response) {
+		Context context  = request.getContext();
+		
+		Invoice invoice = context.asType(Invoice.class);
+		String path = AppSettings.get().get("file.upload.dir");
+//		AppSettings app = context.asType(AppSettings.class);
+//		AppSettings appObj = app.get();
+//		String path = app.get("file.upload.dir");
+		response.setValue("filePath", path);
+		
 		
 	}
 	
