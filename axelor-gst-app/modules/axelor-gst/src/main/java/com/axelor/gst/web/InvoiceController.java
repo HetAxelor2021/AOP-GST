@@ -1,7 +1,9 @@
 package com.axelor.gst.web;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.axelor.app.AppSettings;
@@ -21,6 +23,7 @@ import com.axelor.gst.db.repo.InvoiceRepository;
 import com.axelor.gst.db.repo.StateRepository;
 import com.axelor.gst.service.GstCalculation;
 import com.axelor.inject.Beans;
+import com.axelor.meta.CallMethod;
 import com.axelor.rpc.ActionRequest;
 import com.axelor.rpc.ActionResponse;
 import com.axelor.rpc.Context;
@@ -72,78 +75,78 @@ public class InvoiceController {
 	  }
 	 
 	
-	public void cityData(ActionRequest request, ActionResponse response) {
-		Context context= request.getContext();
-		
-
-		Address address = context.asType(Address.class);
-		
-//		if(address.getId() != null) {
-//			address = Beans.get(AddressRepository.class).find(address.getId());
-//		}
+//	public void cityData(ActionRequest request, ActionResponse response) {
+//		Context context= request.getContext();
+//		
+//
 //		Address address = context.asType(Address.class);
 //		
-		
-		//		 
-		
-		
-		City city = address.getCity();
-		
-//	 		  if(city.getId() != null) { city = Beans.get(CityRepository.class).find(city.getId()); }
-	
-		
-		
-		System.out.println("hello in city: "+city.toString());
-		String cityName = city.getName();
-		String stateName= city.getState();
-		String countryName = city.getCountry();
-		
-		
-//		Address address =context.getParent().asType(Address.class); 
-		
-		
-		State state = address.getState();
-		
-		if(state.getId() != null) {
-			state = Beans.get(StateRepository.class).find(state.getId());
-		}
-		
-		Country country = address.getCountry();
-		if(country.getId() != null) {
-			country = Beans.get(CountryRepository.class).find(country.getId());
-		}
-		
-		state.setName(stateName);
-		state.setCountry(countryName);
-		
-		
-		country.setName(countryName);
-//		response.setValue("state", stateName);
-//		response.setValue("country", countryName);
-				response.setValue("state",state);
-		response.setValue("country",country);
-//		response.setValues(address);
-		
-		System.out.println(state.toString()+" : "+country.toString());
-
-		
-//		response.setReload(true);
-//		address.getState().setName(stateName);
-//		System.out.println("state name after changes: "+address.getState());
+////		if(address.getId() != null) {
+////			address = Beans.get(AddressRepository.class).find(address.getId());
+////		}
+////		Address address = context.asType(Address.class);
+////		
+//		
+//		//		 
 //		
 //		
-//		System.out.println("r");
-//		System.out.println(context.getClass());
-//	
-////		response.setValue(state);
+//		City city = address.getCity();
+//		
+////	 		  if(city.getId() != null) { city = Beans.get(CityRepository.class).find(city.getId()); }
 //	
 //		
-////		System.out.println("response.getData: "+response.setV);
-//		System.out.println("response.getclass: "+address.getState().toString());
+//		
+//		System.out.println("hello in city: "+city.toString());
+//		String cityName = city.getName();
+//		String stateName= city.getState();
+//		String countryName = city.getCountry();
+//		
+//		
+////		Address address =context.getParent().asType(Address.class); 
+//		
+//		
 //		State state = address.getState();
 //		
-		
-	}
+//		if(state.getId() != null) {
+//			state = Beans.get(StateRepository.class).find(state.getId());
+//		}
+//		
+//		Country country = address.getCountry();
+//		if(country.getId() != null) {
+//			country = Beans.get(CountryRepository.class).find(country.getId());
+//		}
+//		
+//		state.setName(stateName);
+//		state.setCountry(countryName);
+//		
+//		
+//		country.setName(countryName);
+////		response.setValue("state", stateName);
+////		response.setValue("country", countryName);
+//				response.setValue("state",state);
+//		response.setValue("country",country);
+////		response.setValues(address);
+//		
+//		System.out.println(state.toString()+" : "+country.toString());
+//
+//		
+////		response.setReload(true);
+////		address.getState().setName(stateName);
+////		System.out.println("state name after changes: "+address.getState());
+////		
+////		
+////		System.out.println("r");
+////		System.out.println(context.getClass());
+////	
+//////		response.setValue(state);
+////	
+////		
+//////		System.out.println("response.getData: "+response.setV);
+////		System.out.println("response.getclass: "+address.getState().toString());
+////		State state = address.getState();
+////		
+//		
+//	}
 	
 	/*
 	 * public void statusValueProvider(ActionRequest request, ActionResponse
@@ -228,6 +231,24 @@ public class InvoiceController {
 		response.setValue("filePath", path);
 		
 		
+	}
+	
+	@CallMethod
+	public String getProductFilePath() {
+		
+		
+		String path = AppSettings.get().get("file.upload.dir");
+		System.out.println(path);
+		return path;
+
+		
+	}
+	
+	@CallMethod
+	public LocalDate getFromDate(LocalDate cdate) {
+		
+		return cdate.withDayOfMonth(1);
+
 	}
 	
 	

@@ -7,7 +7,7 @@
 	<grid name="product-grid" model="com.axelor.gst.db.Product" title="Products">
 		<toolbar>
 			<button name="createInvoice" icon="fas fa-plus-square" onClick="action-product-create-invoice-onclick"/>
-			<button name="btnPrintInvoice" icon="fa-print" onClick="print-invoice-details" />
+			<button name="btnPrintInvoice" icon="fa-print" onClick=" print-product-invoice-details" />
 		</toolbar>
 		<field name="name" />
 		<field name="code" />
@@ -17,6 +17,8 @@
 		<field name="costPrice" />
 		<field name="image" />
 		<field name="gstRate" />
+		
+		
 	</grid>
 	
 	<form name="product-form" model="com.axelor.gst.db.Product" title="Product" >
@@ -29,6 +31,7 @@
 			<field name="costPrice" />
 			<field name="image" widget="image"/>
 			<field name="gstRate" />
+			
 		</panel>
 	</form>
 	
@@ -68,6 +71,21 @@
 		</template>
 	
 	</cards>
+	<action-record name="action-product-record-filepath" model="com.axelor.gst.db.Product">
+		<field name="filePath" expr="call:com.axelor.gst.web.InvoiceController:getProductFilePath()" />
+	</action-record>
+	<action-method name="action-product-method-filepath" >
+		<call class="com.axelor.gst.web.InvoiceController" method="getProductFilePath" />
+	</action-method>
+	
+	<action-report name="print-product-invoice-details" 
+		design="product.rptdesign" 
+		output="so-${date}${time}" 
+		format="pdf" >
+		
+		<param name="filePath" expr="call:com.axelor.gst.web.InvoiceController:getProductFilePath()" />
+		 
+	</action-report>
   
   	<action-record name="action-product-category-onchange" model="com.axelor.gst.db.Product">
   		<field name="gstRate" expr="eval:category.gstRate" />

@@ -9,7 +9,7 @@
 	
 	<entity name="Invoice" sequential="true">
 		<string name="status" title="Status"  selection="gst.invoice.status.select" readonly="true"/>
-		<many-to-one name="company" title="Company" ref="com.axelor.gst.db.Company" required="true" />
+			<many-to-one name="company" title="Company" ref="com.axelor.gst.db.Company" required="true" />
 		<string name="reference" readonly="true" sequence="invoice.order.seq" title="reference" namecolumn="true"/>
 		<datetime name="dateInvoice" title="DateInvoice"  />
 		<integer name="statusValue" title="Status value" />

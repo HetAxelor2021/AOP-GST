@@ -21,9 +21,9 @@
 	  		<field name="line2" />
 	  		<!-- <field name="city" canNew="true" />
 	  		<field name="state" canNew="tr /> -->
-	  		<field name="city" canNew="true" onChange="action-address-onchange-city-method"/>
-	  		<field name="state" canNew="true" domain="self.state.name = self.city.state" onChange="action-address-onchage-state"/> 
-	  		<field name="country" canNew="true" domain="self.country.name= self.state.country"/>
+	  		<field name="city" canNew="true" />
+	  		<field name="state" canNew="true" /> 
+	  		<field name="country" canNew="true" />
 	  		<field name="pinCode" />
 	  		<field name="state.name" />
 	  	</panel>	

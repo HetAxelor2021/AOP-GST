@@ -18,6 +18,8 @@ allprojects {
   repositories repos
 }
 
+apply plugin: 'idea'
+apply plugin: 'eclipse'
 apply plugin: 'com.axelor.app'
 
 axelor {
@@ -25,7 +27,7 @@ axelor {
 }
 
 allprojects {
-  apply plugin: 'idea';
+  apply plugin: 'idea'
   apply plugin: 'eclipse'
 
   group = "com.axelor"

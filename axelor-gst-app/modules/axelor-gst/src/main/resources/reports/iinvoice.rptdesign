@@ -58,81 +58,115 @@
             <list-property name="columnHints">
                 <structure>
                     <property name="columnName">logo</property>
+                    <property name="alias">logo</property>
                     <property name="analysis">measure</property>
                     <text-property name="displayName">logo</text-property>
                     <text-property name="heading">logo</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">reference</property>
+                    <property name="alias">reference</property>
                     <property name="analysis">dimension</property>
                     <text-property name="displayName">reference</text-property>
                     <text-property name="heading">reference</text-property>
                 </structure>
                 <structure>
-                    <property name="columnName">name</property>
+                    <property name="columnName">party_name</property>
+                    <property name="alias">party_name</property>
                     <property name="analysis">dimension</property>
-                    <text-property name="displayName">name</text-property>
-                    <text-property name="heading">name</text-property>
+                    <text-property name="displayName">party_name</text-property>
+                    <text-property name="heading">party_name</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">date_invoice</property>
+                    <property name="alias">date_invoice</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">date_invoice</text-property>
+                    <text-property name="heading">date_invoice</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">item</property>
+                    <property name="alias">item</property>
                     <property name="analysis">dimension</property>
                     <text-property name="displayName">item</text-property>
                     <text-property name="heading">item</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">qty</property>
+                    <property name="alias">qty</property>
                     <property name="analysis">measure</property>
                     <text-property name="displayName">qty</text-property>
                     <text-property name="heading">qty</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">price</property>
+                    <property name="alias">price</property>
                     <property name="analysis">measure</property>
                     <text-property name="displayName">price</text-property>
                     <text-property name="heading">price</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">net_amount</property>
+                    <property name="alias">net_amount</property>
                     <property name="analysis">measure</property>
                     <text-property name="displayName">net_amount</text-property>
                     <text-property name="heading">net_amount</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">igst</property>
+                    <property name="alias">igst</property>
                     <property name="analysis">measure</property>
                     <text-property name="displayName">igst</text-property>
                     <text-property name="heading">igst</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">sgst</property>
+                    <property name="alias">sgst</property>
                     <property name="analysis">measure</property>
                     <text-property name="displayName">sgst</text-property>
                     <text-property name="heading">sgst</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">cgst</property>
+                    <property name="alias">cgst</property>
                     <property name="analysis">measure</property>
                     <text-property name="displayName">cgst</text-property>
                     <text-property name="heading">cgst</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">gross_amount</property>
+                    <property name="alias">gross_amount</property>
                     <property name="analysis">measure</property>
                     <text-property name="displayName">gross_amount</text-property>
                     <text-property name="heading">gross_amount</text-property>
                 </structure>
                 <structure>
-                    <property name="columnName">name_1</property>
+                    <property name="columnName">company_name</property>
+                    <property name="alias">company_name</property>
                     <property name="analysis">dimension</property>
-                    <text-property name="displayName">name</text-property>
-                    <text-property name="heading">name</text-property>
+                    <text-property name="displayName">company_name</text-property>
+                    <text-property name="heading">company_name</text-property>
                 </structure>
                 <structure>
-                    <property name="columnName">line1</property>
+                    <property name="columnName">comapny_address</property>
+                    <property name="alias">comapny_address</property>
                     <property name="analysis">dimension</property>
-                    <text-property name="displayName">line1</text-property>
-                    <text-property name="heading">line1</text-property>
+                    <text-property name="displayName">comapny_address</text-property>
+                    <text-property name="heading">comapny_address</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">invoice_address</property>
+                    <property name="alias">invoice_address</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">invoice_address</text-property>
+                    <text-property name="heading">invoice_address</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">file_path</property>
+                    <property name="alias">file_path</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">file_path</text-property>
+                    <text-property name="heading">file_path</text-property>
                 </structure>
             </list-property>
             <list-property name="parameters">
@@ -143,14 +177,6 @@
                     <property name="dataType">decimal</property>
                     <property name="nativeDataType">-5</property>
                     <property name="position">1</property>
-                    <property name="isInput">true</property>
-                    <property name="isOutput">false</property>
-                </structure>
-                <structure>
-                    <property name="name">param_2</property>
-                    <property name="paramName">filePath</property>
-                    <property name="dataType">string</property>
-                    <property name="position">2</property>
                     <property name="isInput">true</property>
                     <property name="isOutput">false</property>
                 </structure>
@@ -169,57 +195,72 @@
                     </structure>
                     <structure>
                         <property name="position">3</property>
-                        <property name="name">name</property>
+                        <property name="name">party_name</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">4</property>
+                        <property name="name">date_invoice</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
                         <property name="name">item</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">5</property>
+                        <property name="position">6</property>
                         <property name="name">qty</property>
                         <property name="dataType">integer</property>
                     </structure>
                     <structure>
-                        <property name="position">6</property>
+                        <property name="position">7</property>
                         <property name="name">price</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">7</property>
+                        <property name="position">8</property>
                         <property name="name">net_amount</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">8</property>
+                        <property name="position">9</property>
                         <property name="name">igst</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">9</property>
+                        <property name="position">10</property>
                         <property name="name">sgst</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">10</property>
+                        <property name="position">11</property>
                         <property name="name">cgst</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">11</property>
+                        <property name="position">12</property>
                         <property name="name">gross_amount</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
-                        <property name="position">12</property>
-                        <property name="name">name_1</property>
+                        <property name="position">13</property>
+                        <property name="name">company_name</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">13</property>
-                        <property name="name">line1</property>
+                        <property name="position">14</property>
+                        <property name="name">comapny_address</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">15</property>
+                        <property name="name">invoice_address</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">16</property>
+                        <property name="name">file_path</property>
                         <property name="dataType">string</property>
                     </structure>
                 </list-property>
@@ -231,104 +272,109 @@
                     <property name="name">logo</property>
                     <property name="nativeName">logo</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">-5</property>
                 </structure>
                 <structure>
                     <property name="position">2</property>
                     <property name="name">reference</property>
                     <property name="nativeName">reference</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">3</property>
-                    <property name="name">name</property>
-                    <property name="nativeName">name</property>
+                    <property name="name">party_name</property>
+                    <property name="nativeName">party_name</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">4</property>
-                    <property name="name">item</property>
-                    <property name="nativeName">item</property>
-                    <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
+                    <property name="name">date_invoice</property>
+                    <property name="nativeName">date_invoice</property>
+                    <property name="dataType">date-time</property>
                 </structure>
                 <structure>
                     <property name="position">5</property>
-                    <property name="name">qty</property>
-                    <property name="nativeName">qty</property>
-                    <property name="dataType">integer</property>
-                    <property name="nativeDataType">4</property>
+                    <property name="name">item</property>
+                    <property name="nativeName">item</property>
+                    <property name="dataType">string</property>
                 </structure>
                 <structure>
                     <property name="position">6</property>
-                    <property name="name">price</property>
-                    <property name="nativeName">price</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">2</property>
+                    <property name="name">qty</property>
+                    <property name="nativeName">qty</property>
+                    <property name="dataType">integer</property>
                 </structure>
                 <structure>
                     <property name="position">7</property>
-                    <property name="name">net_amount</property>
-                    <property name="nativeName">net_amount</property>
+                    <property name="name">price</property>
+                    <property name="nativeName">price</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">8</property>
-                    <property name="name">igst</property>
-                    <property name="nativeName">igst</property>
+                    <property name="name">net_amount</property>
+                    <property name="nativeName">net_amount</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">9</property>
-                    <property name="name">sgst</property>
-                    <property name="nativeName">sgst</property>
+                    <property name="name">igst</property>
+                    <property name="nativeName">igst</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">10</property>
-                    <property name="name">cgst</property>
-                    <property name="nativeName">cgst</property>
+                    <property name="name">sgst</property>
+                    <property name="nativeName">sgst</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">11</property>
-                    <property name="name">gross_amount</property>
-                    <property name="nativeName">gross_amount</property>
+                    <property name="name">cgst</property>
+                    <property name="nativeName">cgst</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
                     <property name="position">12</property>
-                    <property name="name">name_1</property>
-                    <property name="nativeName">name</property>
-                    <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
+                    <property name="name">gross_amount</property>
+                    <property name="nativeName">gross_amount</property>
+                    <property name="dataType">decimal</property>
                 </structure>
                 <structure>
                     <property name="position">13</property>
-                    <property name="name">line1</property>
-                    <property name="nativeName">line1</property>
+                    <property name="name">company_name</property>
+                    <property name="nativeName">company_name</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">14</property>
+                    <property name="name">comapny_address</property>
+                    <property name="nativeName">comapny_address</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">15</property>
+                    <property name="name">invoice_address</property>
+                    <property name="nativeName">invoice_address</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">16</property>
+                    <property name="name">file_path</property>
+                    <property name="nativeName">file_path</property>
+                    <property name="dataType">string</property>
                 </structure>
             </list-property>
             <xml-property name="queryText"><![CDATA[
-select   c.logo , i.reference , py.name ,
-		
+select   c.logo , i.reference , py.name party_name,
+		i.date_invoice ,
 		il.item , il.qty , il.price , il.net_amount, il.igst, il.sgst, il.cgst
-		, il.gross_amount, c.name , a.line1  
+		, il.gross_amount, c.name company_name , ca.line1 comapny_address, ia.line1 invoice_address, m.file_path 
 from gst_company as c , gst_invoice_line AS il, gst_invoice AS i,
-	 gst_product as p, gst_party AS py, gst_address as a
+	 gst_product as p, gst_party AS py, gst_address as ca, gst_address as ia,  meta_file as m
 where
-	i.id  = il.invoice and i.party = py.id and i.company = c.id and il.product = p.id and c.address = a.id
-	and i.id = ?
-	;
+	i.id  = il.invoice and i.party = py.id and i.company = c.id and il.product = p.id and c.address = ca.id and i.invoice_address = ia.id
+	and c.logo = m.id and i.id = ?
+	
 	]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
@@ -618,24 +664,255 @@ where
     </data-sets>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2">
+            <page-header>
+                <image id="565">
+                    <property name="height">0.34375in</property>
+                    <property name="width">30%</property>
+                    <property name="dataSet">Data Set</property>
+                    <list-property name="boundDataColumns">
+                        <structure>
+                            <property name="name">logo</property>
+                            <expression name="expression" type="javascript">dataSetRow["logo"]</expression>
+                            <property name="dataType">decimal</property>
+                        </structure>
+                        <structure>
+                            <property name="name">reference</property>
+                            <expression name="expression" type="javascript">dataSetRow["reference"]</expression>
+                            <property name="dataType">string</property>
+                        </structure>
+                        <structure>
+                            <property name="name">party_name</property>
+                            <expression name="expression" type="javascript">dataSetRow["party_name"]</expression>
+                            <property name="dataType">string</property>
+                        </structure>
+                        <structure>
+                            <property name="name">date_invoice</property>
+                            <expression name="expression" type="javascript">dataSetRow["date_invoice"]</expression>
+                            <property name="dataType">date-time</property>
+                        </structure>
+                        <structure>
+                            <property name="name">item</property>
+                            <expression name="expression" type="javascript">dataSetRow["item"]</expression>
+                            <property name="dataType">string</property>
+                        </structure>
+                        <structure>
+                            <property name="name">qty</property>
+                            <expression name="expression" type="javascript">dataSetRow["qty"]</expression>
+                            <property name="dataType">integer</property>
+                        </structure>
+                        <structure>
+                            <property name="name">price</property>
+                            <expression name="expression" type="javascript">dataSetRow["price"]</expression>
+                            <property name="dataType">decimal</property>
+                        </structure>
+                        <structure>
+                            <property name="name">net_amount</property>
+                            <expression name="expression" type="javascript">dataSetRow["net_amount"]</expression>
+                            <property name="dataType">decimal</property>
+                        </structure>
+                        <structure>
+                            <property name="name">igst</property>
+                            <expression name="expression" type="javascript">dataSetRow["igst"]</expression>
+                            <property name="dataType">decimal</property>
+                        </structure>
+                        <structure>
+                            <property name="name">sgst</property>
+                            <expression name="expression" type="javascript">dataSetRow["sgst"]</expression>
+                            <property name="dataType">decimal</property>
+                        </structure>
+                        <structure>
+                            <property name="name">cgst</property>
+                            <expression name="expression" type="javascript">dataSetRow["cgst"]</expression>
+                            <property name="dataType">decimal</property>
+                        </structure>
+                        <structure>
+                            <property name="name">gross_amount</property>
+                            <expression name="expression" type="javascript">dataSetRow["gross_amount"]</expression>
+                            <property name="dataType">decimal</property>
+                        </structure>
+                        <structure>
+                            <property name="name">company_name</property>
+                            <expression name="expression" type="javascript">dataSetRow["company_name"]</expression>
+                            <property name="dataType">string</property>
+                        </structure>
+                        <structure>
+                            <property name="name">comapny_address</property>
+                            <expression name="expression" type="javascript">dataSetRow["comapny_address"]</expression>
+                            <property name="dataType">string</property>
+                        </structure>
+                        <structure>
+                            <property name="name">invoice_address</property>
+                            <expression name="expression" type="javascript">dataSetRow["invoice_address"]</expression>
+                            <property name="dataType">string</property>
+                        </structure>
+                        <structure>
+                            <property name="name">file_path</property>
+                            <expression name="expression" type="javascript">dataSetRow["file_path"]</expression>
+                            <property name="dataType">string</property>
+                        </structure>
+                    </list-property>
+                    <property name="source">file</property>
+                    <expression name="uri" type="javascript">params["filePath"].value+'/'+row["file_path"]</expression>
+                </image>
+            </page-header>
             <page-footer>
-                <text id="3">
-                    <property name="contentType">html</property>
-                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
-                </text>
+                <grid id="582">
+                    <property name="dataSet">Data Set</property>
+                    <list-property name="boundDataColumns">
+                        <structure>
+                            <property name="name">logo</property>
+                            <text-property name="displayName">logo</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["logo"]</expression>
+                            <property name="dataType">decimal</property>
+                        </structure>
+                        <structure>
+                            <property name="name">reference</property>
+                            <text-property name="displayName">reference</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["reference"]</expression>
+                            <property name="dataType">string</property>
+                        </structure>
+                        <structure>
+                            <property name="name">party_name</property>
+                            <text-property name="displayName">party_name</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["party_name"]</expression>
+                            <property name="dataType">string</property>
+                        </structure>
+                        <structure>
+                            <property name="name">date_invoice</property>
+                            <text-property name="displayName">date_invoice</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["date_invoice"]</expression>
+                            <property name="dataType">date-time</property>
+                        </structure>
+                        <structure>
+                            <property name="name">item</property>
+                            <text-property name="displayName">item</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["item"]</expression>
+                            <property name="dataType">string</property>
+                        </structure>
+                        <structure>
+                            <property name="name">qty</property>
+                            <text-property name="displayName">qty</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["qty"]</expression>
+                            <property name="dataType">integer</property>
+                        </structure>
+                        <structure>
+                            <property name="name">price</property>
+                            <text-property name="displayName">price</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["price"]</expression>
+                            <property name="dataType">decimal</property>
+                        </structure>
+                        <structure>
+                            <property name="name">net_amount</property>
+                            <text-property name="displayName">net_amount</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["net_amount"]</expression>
+                            <property name="dataType">decimal</property>
+                        </structure>
+                        <structure>
+                            <property name="name">igst</property>
+                            <text-property name="displayName">igst</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["igst"]</expression>
+                            <property name="dataType">decimal</property>
+                        </structure>
+                        <structure>
+                            <property name="name">sgst</property>
+                            <text-property name="displayName">sgst</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["sgst"]</expression>
+                            <property name="dataType">decimal</property>
+                        </structure>
+                        <structure>
+                            <property name="name">cgst</property>
+                            <text-property name="displayName">cgst</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["cgst"]</expression>
+                            <property name="dataType">decimal</property>
+                        </structure>
+                        <structure>
+                            <property name="name">gross_amount</property>
+                            <text-property name="displayName">gross_amount</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["gross_amount"]</expression>
+                            <property name="dataType">decimal</property>
+                        </structure>
+                        <structure>
+                            <property name="name">company_name</property>
+                            <text-property name="displayName">company_name</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["company_name"]</expression>
+                            <property name="dataType">string</property>
+                        </structure>
+                        <structure>
+                            <property name="name">comapny_address</property>
+                            <text-property name="displayName">comapny_address</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["comapny_address"]</expression>
+                            <property name="dataType">string</property>
+                        </structure>
+                        <structure>
+                            <property name="name">invoice_address</property>
+                            <text-property name="displayName">invoice_address</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["invoice_address"]</expression>
+                            <property name="dataType">string</property>
+                        </structure>
+                        <structure>
+                            <property name="name">file_path</property>
+                            <text-property name="displayName">file_path</text-property>
+                            <expression name="expression" type="javascript">dataSetRow["file_path"]</expression>
+                            <property name="dataType">string</property>
+                        </structure>
+                        <structure>
+                            <property name="name">Column Binding</property>
+                            <expression name="expression" type="javascript">row["company_name"]</expression>
+                            <property name="dataType">string</property>
+                            <property name="allowExport">true</property>
+                        </structure>
+                        <structure>
+                            <property name="name">Column Binding_1</property>
+                            <expression name="expression" type="javascript">row["comapny_address"]</expression>
+                            <property name="dataType">string</property>
+                            <property name="allowExport">true</property>
+                        </structure>
+                    </list-property>
+                    <column id="583"/>
+                    <column id="584"/>
+                    <row id="585">
+                        <cell id="586">
+                            <text id="591">
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[<value-of>new Date()</value-of>
+]]></text-property>
+                            </text>
+                        </cell>
+                        <cell id="587">
+                            <data id="592">
+                                <property name="textAlign">right</property>
+                                <property name="resultSetColumn">Column Binding</property>
+                            </data>
+                        </cell>
+                    </row>
+                    <row id="588">
+                        <cell id="589">
+                            <text id="593">
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[<value-of>pageNumber</value-of>]]></text-property>
+                            </text>
+                        </cell>
+                        <cell id="590">
+                            <data id="594">
+                                <property name="textAlign">right</property>
+                                <property name="resultSetColumn">Column Binding_1</property>
+                            </data>
+                        </cell>
+                    </row>
+                </grid>
             </page-footer>
         </simple-master-page>
     </page-setup>
     <body>
-        <table id="7">
+        <table id="233">
+            <property name="borderBottomStyle">none</property>
+            <property name="borderLeftStyle">none</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderTopStyle">none</property>
+            <property name="marginTop">10pt</property>
+            <property name="width">7.947916666666667in</property>
             <property name="dataSet">Data Set</property>
             <list-property name="boundDataColumns">
-                <structure>
-                    <property name="name">logo</property>
-                    <text-property name="displayName">logo</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["logo"]</expression>
-                    <property name="dataType">decimal</property>
-                </structure>
                 <structure>
                     <property name="name">reference</property>
                     <text-property name="displayName">reference</text-property>
@@ -643,10 +920,16 @@ where
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="name">name</property>
-                    <text-property name="displayName">name</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["name"]</expression>
+                    <property name="name">party_name</property>
+                    <text-property name="displayName">party_name</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["party_name"]</expression>
                     <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">date_invoice</property>
+                    <text-property name="displayName">date_invoice</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["date_invoice"]</expression>
+                    <property name="dataType">date-time</property>
                 </structure>
                 <structure>
                     <property name="name">item</property>
@@ -697,267 +980,771 @@ where
                     <property name="dataType">decimal</property>
                 </structure>
                 <structure>
-                    <property name="name">name_1</property>
-                    <text-property name="displayName">name</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["name_1"]</expression>
+                    <property name="name">company_name</property>
+                    <text-property name="displayName">company_name</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["company_name"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="name">line1</property>
-                    <text-property name="displayName">line1</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["line1"]</expression>
+                    <property name="name">comapny_address</property>
+                    <text-property name="displayName">comapny_address</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["comapny_address"]</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">invoice_address</property>
+                    <text-property name="displayName">invoice_address</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["invoice_address"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">file_path</property>
+                    <text-property name="displayName">file_path</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["file_path"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <text-property name="displayName">ag_gross_amount</text-property>
+                    <property name="dataType">decimal</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["gross_amount"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation_1</property>
+                    <text-property name="displayName">ag_qty</text-property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["qty"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">Column Binding</property>
+                    <expression name="expression" type="javascript">row["Aggregation_1"]</expression>
+                    <property name="dataType">decimal</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">aggre_gross_amount</property>
+                    <expression name="expression" type="javascript">row["Aggregation"]</expression>
+                    <property name="dataType">decimal</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">ag_igst</property>
+                    <text-property name="displayName">ag_igst</text-property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["igst"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">ag_cgst</property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["cgst"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">ag_net_amount</property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["net_amount"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">ag_sgst</property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["sgst"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">t_net_amount</property>
+                    <expression name="expression" type="javascript">row["ag_net_amount"]</expression>
+                    <property name="dataType">decimal</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">t_igst</property>
+                    <expression name="expression" type="javascript">row["ag_igst"]</expression>
+                    <property name="dataType">decimal</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">t_ag_sgst</property>
+                    <expression name="expression" type="javascript">row["ag_sgst"]</expression>
+                    <property name="dataType">decimal</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">t_ag_cgst</property>
+                    <expression name="expression" type="javascript">row["ag_cgst"]</expression>
+                    <property name="dataType">decimal</property>
+                    <property name="allowExport">true</property>
+                </structure>
             </list-property>
-            <column id="76"/>
-            <column id="77"/>
-            <column id="78"/>
-            <column id="79"/>
-            <column id="80"/>
-            <column id="81"/>
-            <column id="82"/>
-            <column id="83"/>
-            <column id="84"/>
-            <column id="85"/>
-            <column id="86"/>
-            <column id="87"/>
-            <column id="88"/>
+            <column id="312">
+                <property name="width">0.6145833333333334in</property>
+            </column>
+            <column id="313">
+                <property name="width">1.15625in</property>
+            </column>
+            <column id="314">
+                <property name="width">0.53125in</property>
+            </column>
+            <column id="315">
+                <property name="width">0.53125in</property>
+            </column>
+            <column id="316">
+                <property name="width">0.53125in</property>
+            </column>
+            <column id="317">
+                <property name="width">0.53125in</property>
+            </column>
+            <column id="318">
+                <property name="width">0.53125in</property>
+            </column>
+            <column id="319">
+                <property name="width">0.53125in</property>
+            </column>
+            <column id="320">
+                <property name="width">0.53125in</property>
+            </column>
             <header>
-                <row id="8">
-                    <cell id="9">
-                        <label id="10">
-                            <text-property name="text">logo</text-property>
+                <row id="407">
+                    <cell id="328">
+                        <property name="colSpan">1</property>
+                        <property name="rowSpan">7</property>
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">none</property>
+                        <property name="borderTopWidth">thin</property>
+                    </cell>
+                    <cell id="409">
+                        <property name="colSpan">2</property>
+                        <property name="rowSpan">1</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                    </cell>
+                    <cell id="411">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <text id="505">
+                            <property name="fontWeight">bold</property>
+                            <property name="contentType">auto</property>
+                            <text-property name="content"><![CDATA[INVOICE]]></text-property>
+                        </text>
+                    </cell>
+                    <cell id="412">
+                        <property name="colSpan">5</property>
+                        <property name="rowSpan">1</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                    </cell>
+                </row>
+                <row id="423">
+                    <cell id="425">
+                        <property name="colSpan">8</property>
+                        <property name="rowSpan">1</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                    </cell>
+                </row>
+                <row id="439">
+                    <property name="marginTop">2em</property>
+                    <property name="marginBottom">10pt</property>
+                    <property name="paddingTop">1pt</property>
+                    <property name="paddingBottom">1pt</property>
+                    <cell id="441">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <label id="240">
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Date</text-property>
                         </label>
                     </cell>
-                    <cell id="11">
-                        <label id="12">
-                            <text-property name="text">reference</text-property>
+                    <cell id="442">
+                        <property name="colSpan">2</property>
+                        <property name="rowSpan">1</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <data id="271">
+                            <property name="resultSetColumn">date_invoice</property>
+                        </data>
+                    </cell>
+                    <cell id="444">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                    </cell>
+                    <cell id="445">
+                        <property name="colSpan">2</property>
+                        <property name="rowSpan">1</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <data id="269">
+                            <property name="fontWeight">bold</property>
+                            <property name="resultSetColumn">party_name</property>
+                        </data>
+                    </cell>
+                    <cell id="447">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                    </cell>
+                    <cell id="448">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                    </cell>
+                </row>
+                <row id="455">
+                    <property name="marginTop">2em</property>
+                    <property name="marginBottom">10pt</property>
+                    <property name="paddingTop">1pt</property>
+                    <property name="paddingBottom">1pt</property>
+                    <cell id="457">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <label id="236">
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Reference</text-property>
                         </label>
                     </cell>
-                    <cell id="13">
-                        <label id="14">
-                            <text-property name="text">name</text-property>
+                    <cell id="458">
+                        <property name="colSpan">2</property>
+                        <property name="rowSpan">1</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <data id="267">
+                            <property name="resultSetColumn">reference</property>
+                        </data>
+                    </cell>
+                    <cell id="460">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                    </cell>
+                    <cell id="461">
+                        <property name="colSpan">2</property>
+                        <property name="rowSpan">1</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <data id="293">
+                            <property name="resultSetColumn">invoice_address</property>
+                        </data>
+                    </cell>
+                    <cell id="463">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                    </cell>
+                    <cell id="464">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                    </cell>
+                </row>
+                <row id="471">
+                    <cell id="473">
+                        <property name="colSpan">8</property>
+                        <property name="rowSpan">2</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                    </cell>
+                </row>
+                <row id="487"/>
+                <row id="234">
+                    <cell id="237">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <label id="242">
+                            <text-property name="text">Item</text-property>
                         </label>
                     </cell>
-                    <cell id="15">
-                        <label id="16">
-                            <text-property name="text">item</text-property>
+                    <cell id="239">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <label id="244">
+                            <text-property name="text">Qty</text-property>
                         </label>
                     </cell>
-                    <cell id="17">
-                        <label id="18">
-                            <text-property name="text">qty</text-property>
+                    <cell id="241">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <label id="246">
+                            <text-property name="text">Price</text-property>
                         </label>
                     </cell>
-                    <cell id="19">
-                        <label id="20">
-                            <text-property name="text">price</text-property>
+                    <cell id="243">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <label id="248">
+                            <text-property name="text">Net amount</text-property>
                         </label>
                     </cell>
-                    <cell id="21">
-                        <label id="22">
-                            <text-property name="text">net_amount</text-property>
+                    <cell id="245">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <label id="250">
+                            <text-property name="text">IGST</text-property>
                         </label>
                     </cell>
-                    <cell id="23">
-                        <label id="24">
-                            <text-property name="text">igst</text-property>
+                    <cell id="247">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <label id="252">
+                            <text-property name="text">SGST</text-property>
                         </label>
                     </cell>
-                    <cell id="25">
-                        <label id="26">
-                            <text-property name="text">sgst</text-property>
+                    <cell id="249">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <label id="254">
+                            <text-property name="text">CGST</text-property>
                         </label>
                     </cell>
-                    <cell id="27">
-                        <label id="28">
-                            <text-property name="text">cgst</text-property>
-                        </label>
-                    </cell>
-                    <cell id="29">
-                        <label id="30">
-                            <text-property name="text">gross_amount</text-property>
-                        </label>
-                    </cell>
-                    <cell id="31">
-                        <label id="32">
-                            <text-property name="text">name</text-property>
-                        </label>
-                    </cell>
-                    <cell id="33">
-                        <label id="34">
-                            <text-property name="text">line1</text-property>
+                    <cell id="251">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <label id="256">
+                            <text-property name="text">Gross amount</text-property>
                         </label>
                     </cell>
                 </row>
             </header>
             <detail>
-                <row id="35">
-                    <cell id="36">
-                        <data id="37">
-                            <property name="resultSetColumn">logo</property>
-                        </data>
+                <row id="265">
+                    <cell id="266">
+                        <property name="colSpan">1</property>
+                        <property name="rowSpan">1</property>
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">none</property>
+                        <property name="borderTopWidth">thin</property>
                     </cell>
-                    <cell id="38">
-                        <data id="39">
-                            <property name="resultSetColumn">reference</property>
-                        </data>
-                    </cell>
-                    <cell id="40">
-                        <data id="41">
-                            <property name="resultSetColumn">name</property>
-                        </data>
-                    </cell>
-                    <cell id="42">
-                        <data id="43">
+                    <cell id="268">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <data id="273">
                             <property name="resultSetColumn">item</property>
                         </data>
                     </cell>
-                    <cell id="44">
-                        <data id="45">
+                    <cell id="270">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <data id="275">
                             <property name="resultSetColumn">qty</property>
                         </data>
                     </cell>
-                    <cell id="46">
-                        <data id="47">
+                    <cell id="272">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <data id="277">
                             <property name="resultSetColumn">price</property>
                         </data>
                     </cell>
-                    <cell id="48">
-                        <data id="49">
+                    <cell id="274">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <data id="279">
                             <property name="resultSetColumn">net_amount</property>
                         </data>
                     </cell>
-                    <cell id="50">
-                        <data id="51">
+                    <cell id="276">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <data id="281">
                             <property name="resultSetColumn">igst</property>
                         </data>
                     </cell>
-                    <cell id="52">
-                        <data id="53">
+                    <cell id="278">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <data id="283">
                             <property name="resultSetColumn">sgst</property>
                         </data>
                     </cell>
-                    <cell id="54">
-                        <data id="55">
+                    <cell id="280">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <data id="285">
                             <property name="resultSetColumn">cgst</property>
                         </data>
                     </cell>
-                    <cell id="56">
-                        <data id="57">
+                    <cell id="282">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <data id="287">
                             <property name="resultSetColumn">gross_amount</property>
-                        </data>
-                    </cell>
-                    <cell id="58">
-                        <data id="59">
-                            <property name="resultSetColumn">name_1</property>
-                        </data>
-                    </cell>
-                    <cell id="60">
-                        <data id="61">
-                            <property name="resultSetColumn">line1</property>
                         </data>
                     </cell>
                 </row>
             </detail>
             <footer>
-                <row id="62">
-                    <cell id="63"/>
-                    <cell id="64"/>
-                    <cell id="65"/>
-                    <cell id="66"/>
-                    <cell id="67"/>
-                    <cell id="68"/>
-                    <cell id="69"/>
-                    <cell id="70"/>
-                    <cell id="71"/>
-                    <cell id="72"/>
-                    <cell id="73"/>
-                    <cell id="74"/>
-                    <cell id="75"/>
+                <row id="519">
+                    <cell id="520">
+                        <property name="colSpan">1</property>
+                        <property name="rowSpan">1</property>
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">none</property>
+                        <property name="borderTopWidth">thin</property>
+                    </cell>
+                    <cell id="521">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <text id="563">
+                            <property name="fontSize">10pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="contentType">auto</property>
+                            <text-property name="content"><![CDATA[Total]]></text-property>
+                        </text>
+                    </cell>
+                    <cell id="522">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <data id="518">
+                            <property name="fontSize">10pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="resultSetColumn">Column Binding</property>
+                        </data>
+                    </cell>
+                    <cell id="523">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                    </cell>
+                    <cell id="524">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <data id="559">
+                            <property name="fontSize">10pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="resultSetColumn">t_net_amount</property>
+                        </data>
+                    </cell>
+                    <cell id="525">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <data id="560">
+                            <property name="fontSize">10pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="resultSetColumn">t_igst</property>
+                        </data>
+                    </cell>
+                    <cell id="526">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <data id="561">
+                            <property name="fontSize">10pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="resultSetColumn">t_ag_sgst</property>
+                        </data>
+                    </cell>
+                    <cell id="527">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <data id="562">
+                            <property name="fontSize">10pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="resultSetColumn">t_ag_cgst</property>
+                        </data>
+                    </cell>
+                    <cell id="528">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <data id="506">
+                            <property name="fontSize">10pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="resultSetColumn">aggre_gross_amount</property>
+                        </data>
+                    </cell>
                 </row>
             </footer>
         </table>
-        <text-data id="89">
-            <expression name="valueExpr">params["invoiceId"].value</expression>
-            <property name="contentType">html</property>
-        </text-data>
-        <image id="90">
-            <property name="dataSet">Data Set</property>
-            <list-property name="boundDataColumns">
-                <structure>
-                    <property name="name">logo</property>
-                    <expression name="expression" type="javascript">dataSetRow["logo"]</expression>
-                    <property name="dataType">javaObject</property>
-                    <property name="allowExport">true</property>
-                </structure>
-                <structure>
-                    <property name="name">reference</property>
-                    <expression name="expression" type="javascript">dataSetRow["reference"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">name</property>
-                    <expression name="expression" type="javascript">dataSetRow["name"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">item</property>
-                    <expression name="expression" type="javascript">dataSetRow["item"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">qty</property>
-                    <expression name="expression" type="javascript">dataSetRow["qty"]</expression>
-                    <property name="dataType">integer</property>
-                </structure>
-                <structure>
-                    <property name="name">price</property>
-                    <expression name="expression" type="javascript">dataSetRow["price"]</expression>
-                    <property name="dataType">decimal</property>
-                </structure>
-                <structure>
-                    <property name="name">net_amount</property>
-                    <expression name="expression" type="javascript">dataSetRow["net_amount"]</expression>
-                    <property name="dataType">decimal</property>
-                </structure>
-                <structure>
-                    <property name="name">igst</property>
-                    <expression name="expression" type="javascript">dataSetRow["igst"]</expression>
-                    <property name="dataType">decimal</property>
-                </structure>
-                <structure>
-                    <property name="name">sgst</property>
-                    <expression name="expression" type="javascript">dataSetRow["sgst"]</expression>
-                    <property name="dataType">decimal</property>
-                </structure>
-                <structure>
-                    <property name="name">cgst</property>
-                    <expression name="expression" type="javascript">dataSetRow["cgst"]</expression>
-                    <property name="dataType">decimal</property>
-                </structure>
-                <structure>
-                    <property name="name">gross_amount</property>
-                    <expression name="expression" type="javascript">dataSetRow["gross_amount"]</expression>
-                    <property name="dataType">decimal</property>
-                </structure>
-                <structure>
-                    <property name="name">name_1</property>
-                    <expression name="expression" type="javascript">dataSetRow["name_1"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">line1</property>
-                    <expression name="expression" type="javascript">dataSetRow["line1"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-            </list-property>
-            <property name="source">file</property>
-            <expression name="uri" type="javascript">params["filePath"].value</expression>
-        </image>
-        <text-data id="91">
-            <expression name="valueExpr">params["filePath"].value</expression>
-            <property name="contentType">html</property>
-        </text-data>
     </body>
 </report>

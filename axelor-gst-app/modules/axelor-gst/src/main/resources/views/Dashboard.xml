@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
+	
+	
+	
+	
+	<chart name="chart.invoice.per.customer" title="Invoice Per Customer" onInit="action-dashboard-record-date-default">
+		<search-fields>
+			<field type="date" name="fromDate" title="fromDate"  />
+			<field type="date" name="toDate" title="toDate" />
+			 
+		</search-fields>
+		<dataset type="sql">
+			<![CDATA[
+								
+				select count(*) no_of_invoices , gp.name party_name
+				from gst_invoice gi , gst_party gp
+				where gi.party = gp.id  and date(date_invoice)  between  date(:fromDate) and date(:toDate)
+						and  gi.status in ('draft','validated')
+				group by gp.id;
+			]]>
+		</dataset>
+		<category key="party_name" type="text" />
+		<series key="no_of_invoices" type="bar" />
+			 
+ 	</chart>
+ 	
+ 	<chart name="chart.invoices.per.category.per.product" title="Invoices Per Category Per Product" onInit="action-dashboard-record-date-default" >
+ 		<search-fields>
+ 			<field name="fromDate" type="date" title="fromDate" />
+ 			<field name="toDate" type="date" title="toDate" />
+ 			
+ 		</search-fields>
+ 		<dataset type="sql" >
+ 			<![CDATA[
+ 				SELECT COUNT(*) no_of_invoices,  gp.name product_name, gpc.name product_category
+ 				from gst_invoice gi, gst_product gp, gst_invoice_line gil, gst_product_category gpc
+ 				where gil.invoice = gi.id 
+ 					and gil.product = gp.id
+ 					and gp.category = gpc.id
+ 					and gi.status in ('paid')
+ 					and date(date_invoice)  between  date(:fromDate) and date(:toDate)
+ 				group by gpc.name, gp.id
+ 			]]>
+ 			
+ 			
+ 		</dataset>
+ 		<category key="product_name" type="text" />
+ 		<series key="no_of_invoices" type="bar" groupBy="product_category" />
+ 		
+ 	</chart>
+ 
+ 	<chart name="chart.customer.per.state" title="Customer Per State" >
+ 		<dataset type="sql" >
+ 			<![CDATA[
+ 				select count(*) no_of_customers, gs.name state_name
+				from gst_address ga , gst_party gp , gst_state gs , gst_party_address_list gpal 
+				where gp.id = gpal.gst_party 
+					and gpal.address_list = ga.id 
+					
+					and ga.state = gs.id 
+					and gp.customer in ('true')
+					group by gs.id;
+ 				
+ 			]]>
+ 		</dataset>
+ 		<category key="state_name"  type="text" />
+ 		<series key="no_of_customers" type="pie" />
+ 	</chart>
+ 	
+ 	<action-record name="action-dashboard-record-date-default" model="com.axelor.gst.db.Invoice" >
+ 		<field name="fromDate" expr="call:com.axelor.gst.web.InvoiceController:getFromDate(__date__)" />
+ 		<field name="toDate" expr="eval:__date__" />
+ 	</action-record>
+ 	
+ 
+ 
+ 
+</object-views>
