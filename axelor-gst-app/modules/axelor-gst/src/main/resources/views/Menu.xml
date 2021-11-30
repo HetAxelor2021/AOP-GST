@@ -15,12 +15,27 @@
  <action-view name="action.dashboard.view.dashboard" title="Dashboard" >
  	<view type="dashboard" name="graph.dashboard.new" />
  	
+ 	
+ 	
  </action-view>
  <dashboard name="graph.dashboard.new" title="Dashboard" >
  	<dashlet action="chart:chart.invoice.per.customer" />
  	<dashlet action="chart:chart.invoices.per.category.per.product" />
  	<dashlet action="chart:chart.customer.per.state" />
+ 	<dashlet action="chart:chart.invoices.per.status.amount" />
+ 	<dashlet action="chart:chart.invoices.per.status.no.of.invoices.line" />
+ 	<dashlet action="action.invoice.view.dashboard.invoice" />
  </dashboard>
+ 
+ <action-view name="action.invoice.view.dashboard.invoice" title="Invoices" model="com.axelor.gst.db.Invoice">
+ 	<view type="grid" name="invoice-grid" />
+ 	<!-- <domain>YEAR(self.dateInvoice) >= 1 </domain> -->
+ 	
+ 	<domain >self.status in ('validated')  and (YEAR(current_date) - YEAR(self.dateInvoice) >= 1 or MONTH(current_date) - MONTH(self.dateInvoice) >=1)
+		</domain> 
+ 	
+ </action-view>
+ 
  
  
  <!-- section-party -->

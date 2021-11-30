@@ -76,6 +76,52 @@
  		<field name="toDate" expr="eval:__date__" />
  	</action-record>
  	
+ 	<chart name="chart.invoices.per.status.amount" title="Invoices Per Status" >
+ 		<dataset type="sql" >
+ 			<![CDATA[
+ 				select count(*) no_of_invoices, gi.status status, sum(gi.gross_amount) amount
+ 				from gst_invoice gi
+ 				where gi.status is not null
+ 				group by gi.status;
+ 			
+ 			]]>
+ 		</dataset>
+ 		<category key="status" type="text" />
+ 		<series key="no_of_invoices" type="bar" groupBy="amount"/>
+ 	</chart>
+ 	
+ 	<chart name="chart.invoices.per.status.no.of.invoices.line" title="No of invoices Per status" >
+ 		<dataset type="sql">
+ 			<![CDATA[
+ 				select count(*) no_of_invoices, gi.status status
+ 				from gst_invoice gi
+ 				where gi.status is not null
+ 				group by gi.status;
+ 			]]>
+ 		</dataset>
+ 		<category key="status" type="text" />
+ 		<series key="no_of_invoices" type="line" />
+ 	</chart>
+ 	
+ 	<grid name="dashboard-grid"  title="Invoices" model="com.axelor.gst.db.Invoice" >
+		<field name="status" />
+		<field name="company" />
+		<field name="reference" />
+		<field name="dateInvoice" />
+		<field name="priority" />
+		<field name="party" />
+		<field name="partyContact" />
+		<field name="invoiceAddress" />
+		<field name="shippingAddress" />
+		<field name="useInvoiceAddressShipping" />
+		<field name="netAmount" />
+		<field name="netIGST" />
+		<field name="netCSGT" />
+		<field name="netSGST" />
+		<field name="grossAmount" />
+		<field name="invoiceItemsList" />
+	</grid>
+ 	
  
  
  
