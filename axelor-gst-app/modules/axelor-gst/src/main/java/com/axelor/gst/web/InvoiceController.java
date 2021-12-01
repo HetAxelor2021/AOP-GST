@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+//import javax.transaction.Transactional;
+
 import com.axelor.app.AppSettings;
 import com.axelor.gst.db.Address;
 import com.axelor.gst.db.City;
@@ -13,20 +15,27 @@ import com.axelor.gst.db.Company;
 import com.axelor.gst.db.Country;
 import com.axelor.gst.db.Invoice;
 import com.axelor.gst.db.InvoiceLine;
+import com.axelor.gst.db.Party;
 import com.axelor.gst.db.Product;
+import com.axelor.gst.db.Sequence;
 import com.axelor.gst.db.State;
 import com.axelor.gst.db.repo.AddressRepository;
 import com.axelor.gst.db.repo.CityRepository;
 import com.axelor.gst.db.repo.CountryRepository;
 import com.axelor.gst.db.repo.InvoiceLineRepository;
 import com.axelor.gst.db.repo.InvoiceRepository;
+import com.axelor.gst.db.repo.SequenceRepository;
 import com.axelor.gst.db.repo.StateRepository;
 import com.axelor.gst.service.GstCalculation;
 import com.axelor.inject.Beans;
 import com.axelor.meta.CallMethod;
+import com.axelor.meta.db.MetaModel;
+import com.axelor.meta.db.repo.MetaModelRepository;
 import com.axelor.rpc.ActionRequest;
 import com.axelor.rpc.ActionResponse;
 import com.axelor.rpc.Context;
+import com.google.inject.Inject;
+import com.google.inject.persist.Transactional;
 
 public class InvoiceController {
 	public void allGstCalculation(ActionRequest request, ActionResponse response) {
@@ -249,6 +258,129 @@ public class InvoiceController {
 		
 		return cdate.withDayOfMonth(1);
 
+	}
+	@Inject
+	SequenceRepository seqRep ;
+	
+	@CallMethod
+	@Transactional
+	public String getSequenceString(String name) {
+		
+		MetaModel metaModel = Beans.get(MetaModelRepository.class).findByName(name);
+		Sequence sequence = Beans.get(SequenceRepository.class).findByMetaModel(metaModel);
+		
+		
+		int padding = sequence.getPadding();
+		String nextNumber = sequence.getNextNumber();
+		String sequenceString = nextNumber;
+		String suffix = sequence.getSuffix();
+ 		if (suffix == null) suffix="";
+ 		
+ 		
+		System.out.println(suffix);
+		String prefix = sequence.getPrefix();
+		Integer pad = sequence.getPadding();
+		int nu = getNumber(prefix,pad,nextNumber);
+		nu++;
+		nextNumber = getFirstNextNumber(prefix,suffix, pad, nu+"");
+		System.out.println(nextNumber);
+		sequence.setNextNumber(nextNumber);
+		seqRep.save(sequence);
+
+		return sequenceString;
+		
+		
+	}
+	
+	
+	public int getNumber(String prefix, int padding, String nextNumber) {
+		boolean flag = false;
+		String n = "";
+		for(int i=prefix.length();i<prefix.length()+padding;i++) {
+				
+			if(flag) {
+				
+				n+= nextNumber.charAt(i);
+				
+			}else if(nextNumber.charAt(i) != '0' ) {
+				n+=nextNumber.charAt(i);
+				flag = true;
+			}
+		}
+		return new Integer(n);
+	}
+	
+	
+	
+	public void getNextNumber(ActionRequest request , ActionResponse response) {
+		
+		Context context = request.getContext();
+		Sequence sequence = context.asType(Sequence.class);
+
+		int paddingCustom = sequence.getPadding();
+		String prefixCustom = sequence.getPrefix();
+		String nextNumberCustom = sequence.getNextNumber();
+		String suffixCustom  = sequence.getSuffix();
+		
+		if(suffixCustom== null) suffixCustom = "";
+		
+		
+		if(sequence.getId() != null) {
+			sequence = Beans.get(SequenceRepository.class).find(sequence.getId());
+		}
+		
+		
+		int padding = sequence.getPadding();
+		String prefix = sequence.getPrefix();
+		String nextNumber = sequence.getNextNumber();
+		String suffix = sequence.getSuffix();
+		
+		if(suffix==null) suffix="";
+		
+		
+		
+		
+		System.out.println(paddingCustom+" : "+prefixCustom+" : "+nextNumberCustom+" : "+suffixCustom);
+		System.out.println(padding+" : "+prefix+" : "+nextNumber+" : "+suffix);
+			
+		String sequenceString = "";
+		if(!prefix.equals(prefixCustom)) {
+			sequenceString=prefixCustom;
+				for(int i=prefix.length();i<nextNumber.length();i++) {
+					sequenceString += nextNumber.charAt(i);
+					
+				}
+				System.out.println(sequenceString);
+		}else if(padding!=paddingCustom) {
+			String n = getNumber(prefix,padding,nextNumber)+"";
+			
+			sequenceString = getFirstNextNumber(prefix,suffix, paddingCustom, n);
+		}else {
+			
+			for(int i=0;i<nextNumber.length()-suffix.length();i++) {
+				sequenceString += nextNumber.charAt(i);
+			}
+			sequenceString += suffixCustom;
+
+		}
+		
+		response.setValue("nextNumber", sequenceString);
+		
+		
+		
+	}
+	
+	@CallMethod
+	public String getFirstNextNumber(String prefix,String suffix, Integer padding, String n ) {
+		String sequenceString = prefix;
+		System.out.println("initial");
+		for(int i=0;i<padding-n.length();i++) {
+			sequenceString += "0";
+		}
+		sequenceString = sequenceString + n + suffix;
+		
+		return sequenceString;
+		
 	}
 	
 	

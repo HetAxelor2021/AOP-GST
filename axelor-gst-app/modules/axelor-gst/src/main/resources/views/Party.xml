@@ -54,7 +54,7 @@
 	</grid>
 	
 	
-	<form name="party-form" title="Party" model="com.axelor.gst.db.Party" >
+	<form name="party-form" title="Party" model="com.axelor.gst.db.Party" onSave="action-party-on-save-reference-record" >
 		<panel>
 			<field name="reference" />
 			<field name="name" />
@@ -95,4 +95,16 @@
 			</panel>
 		</panel-tabs>
 	</form>
+	
+	
+	<action-record name="action-party-on-save-reference-record" model="com.axelor.gst.db.Party" >
+	<field name="reference" expr="call:com.axelor.gst.web.InvoiceController:getSequenceString('Party')"  if="reference.equals('') || !reference"/>
+		
+	</action-record>
+	
+	
  </object-views>
+ 
+ 
+ 
+ 

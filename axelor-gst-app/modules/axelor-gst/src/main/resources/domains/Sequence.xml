@@ -8,10 +8,10 @@
 	<entity name="Sequence" >
 		<string name="prefix" title="Prefix" required="true" />
 		<string name="suffix" title="suffix" />
-		<integer name="padding" title="Padding" min="1" max="10" />
+		<integer name="padding" title="Padding" min="1" max="10" default="1"/>
 		<string name="nextNumber" title="Next Number" />
 		<many-to-one ref="com.axelor.meta.db.MetaModel" name="metaModel" title="Meta Model" required="true" />
-		
+		<finder-method name="findByMetaModel" using="metaModel" />
 	</entity>
 
 </domain-models>

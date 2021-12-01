@@ -9,17 +9,39 @@
 		<field name="suffix" />
 		<field name="padding" />
 		<field name="nextNumber" />
-		<field name="model" />
+		<field name="metaModel" />
 	</grid>	
 	
 	<form name="sequence-form" title="Sequence" model="com.axelor.gst.db.Sequence" >
 		<panel>
-			<field name="prefix" />
-			<field name="suffix" />
-			<field name="padding" />
-			<field name="nexttNumber" />
-			<field name="model" /> 
-		</panel>
+			<field name="prefix" onChange="action-sequence-on-change-next-number-group,save"/>
+			<field name="suffix" onChange="action-sequence-on-change-next-number-group,save "/>
+			<field name="padding" onChange="action-sequence-on-change-next-number-group,save" />
+			<field name="nextNumber"  />
+			<field name="metaModel" canSelect="true" canNew="true"/>
+ 			
+		</panel> 
 	</form>
+	
+	<action-group name="action-sequence-on-change-next-number-group">
+		<action name="action-sequence-on-change-next-number-method" if="nextNumber" />
+		<action name="action-sequence-on-change-next-number-record" if="!nextNumber"/>
+	
+	 </action-group>
+	
+	<action-record name="action-sequence-on-change-next-number-record" model="com.axelor.gst.db.Sequence" >
+		
+		<field name="nextNumber" expr="call:com.axelor.gst.web.InvoiceController:getFirstNextNumber(prefix,suffix,padding,'1')" />
+	</action-record>
+	
+	<action-method name="action-sequence-on-change-next-number-method" >
+		<call class="com.axelor.gst.web.InvoiceController" method="getNextNumber" />
+	</action-method>
+	
+	
+	<action-method name="action.sequence.on.save.model.method" >
+		<call class="com.axelor.gst.web.InvoiceController" method="getSequenceString" />
+		 
+	</action-method>
  
  </object-views>

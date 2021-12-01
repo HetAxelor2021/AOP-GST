@@ -8,7 +8,7 @@
 	<sequence name="party.order.seq" initial="1" increment="1" padding="10" prefix="ABC" />
 	 
 	<entity name="Party" sequential="true" >
-		<string name="reference" sequence="party.order.seq" title="Reference" readonly="true"   />
+		<string name="reference"  readonly="true"   />
 		<string name="name" title="Name" required="true" />
 		<string name="type" title="Type" selection="gst.party.type.select" default="company"/>
 		<boolean name="customer" title="Customer" />

@@ -70,7 +70,7 @@
 	</kanban>
 	
 	
-	<form name="invoice-form" title="Invoice" model="com.axelor.gst.db.Invoice" width="large" onNew="action-invoice-form-onnew" onLoad=" action-invoice-invoiceitemlist-onmethod">
+	<form name="invoice-form" title="Invoice" model="com.axelor.gst.db.Invoice" width="large" onNew="action-invoice-form-onnew" onLoad=" action-invoice-invoiceitemlist-onmethod" onSave="action-invoice-on-save-reference-record">
 	<!-- <form name="invoice-form" title="Invoice" model="com.axelor.gst.db.Invoice" width="large" onNew="action-invoice-attrs-btn-status, action-invoice-form-onnew,action-invoice-status-onchange-method" onLoad="action-invoice-attrs-btn-status, action-invoice-invoiceitemlist-onmethod, action-invoice-status-start-onload, action-invoice-status-onchange-method"> -->
 			<toolbar>
 				<button name="btnPrintInvoice" icon="fa-print" onClick="action-invoice-record-filePath-method,save, print-invoices-details" />
@@ -112,6 +112,14 @@
 				</panel>
 		<!-- </panel> -->
 	</form>
+	
+	<!--  -->
+		
+	<action-record name="action-invoice-on-save-reference-record" model="com.axelor.gst.db.Invoice" >
+	<field name="reference" expr="call:com.axelor.gst.web.InvoiceController:getSequenceString('Invoice')"  if="reference.equals('') || !reference"/>
+		
+	</action-record>
+	
 	
 	<action-method name="action-invoice-record-filePath-method" >
 		<call class="com.axelor.gst.web.InvoiceController" method="getFilePath" />
