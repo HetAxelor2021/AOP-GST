@@ -54,7 +54,7 @@
 	</grid>
 	
 	
-	<form name="party-form" title="Party" model="com.axelor.gst.db.Party" onSave="action-party-on-save-reference-record" >
+	<form name="party-form" title="Party" model="com.axelor.gst.db.Party" onSave="action-party-on-save-reference-record, action-party-on-save-reference-validate	" >
 		<panel>
 			<field name="reference" />
 			<field name="name" />
@@ -103,6 +103,10 @@
 	</action-record>
 	
 	
+	<action-validate name="action-party-on-save-reference-validate">
+		<error message="Sequence is not generated for current model" if="!reference"/>
+	</action-validate>
+		
  </object-views>
  
  

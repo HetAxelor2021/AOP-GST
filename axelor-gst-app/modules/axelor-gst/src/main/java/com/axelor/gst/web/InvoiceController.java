@@ -245,7 +245,8 @@ public class InvoiceController {
 	@CallMethod
 	public String getProductFilePath() {
 		
-		
+		String locale = AppSettings.get().get("application.locale");
+		System.out.println("locale value: "+locale);
 		String path = AppSettings.get().get("file.upload.dir");
 		System.out.println(path);
 		return path;
@@ -266,9 +267,14 @@ public class InvoiceController {
 	@Transactional
 	public String getSequenceString(String name) {
 		
+		
 		MetaModel metaModel = Beans.get(MetaModelRepository.class).findByName(name);
 		Sequence sequence = Beans.get(SequenceRepository.class).findByMetaModel(metaModel);
-		
+		if(sequence==null) {
+			System.err.println("hello alert");
+			
+			return null ;
+		}
 		
 		int padding = sequence.getPadding();
 		String nextNumber = sequence.getNextNumber();

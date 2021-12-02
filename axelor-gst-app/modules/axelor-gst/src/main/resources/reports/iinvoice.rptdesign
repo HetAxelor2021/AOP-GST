@@ -661,6 +661,136 @@ where
   </design:ResultSets>
 </model:DesignValues>]]></xml-property>
         </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Data Set1" id="595">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">message_key</property>
+                    <text-property name="displayName">message_key</text-property>
+                    <text-property name="heading">message_key</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">translation</property>
+                    <text-property name="displayName">translation</text-property>
+                    <text-property name="heading">translation</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">param_1</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">message_key</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">translation</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Data Source</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">message_key</property>
+                    <property name="nativeName">message_key</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">translation</property>
+                    <property name="nativeName">translation</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[
+select mt.message_key , mt.message_value translation 
+from meta_translation mt 
+where mt.message_key = ?
+	and mt.language in (select language from auth_user au where au.code in ('admin'))]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <DataSetParameters>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+  </DataSetParameters>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>message_key</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>1024</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>message_key</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>message_key</design:label>
+            <design:formattingHints>
+              <design:displaySize>1024</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>translation</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>1024</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>translation</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>translation</design:label>
+            <design:formattingHints>
+              <design:displaySize>1024</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
     </data-sets>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2">
@@ -1177,11 +1307,40 @@ where
                         <property name="borderRightWidth">thin</property>
                         <property name="borderTopStyle">solid</property>
                         <property name="borderTopWidth">thin</property>
-                        <text id="505">
+                        <data id="608">
                             <property name="fontWeight">bold</property>
-                            <property name="contentType">auto</property>
-                            <text-property name="content"><![CDATA[INVOICE]]></text-property>
-                        </text>
+                            <property name="dataSet">Data Set1</property>
+                            <list-property name="paramBindings">
+                                <structure>
+                                    <property name="paramName">param_1</property>
+                                    <simple-property-list name="expression">
+                                        <value type="javascript">'invoice'</value>
+                                    </simple-property-list>
+                                </structure>
+                            </list-property>
+                            <list-property name="boundDataColumns">
+                                <structure>
+                                    <property name="name">message_key</property>
+                                    <text-property name="displayName">message_key</text-property>
+                                    <expression name="expression" type="javascript">dataSetRow["message_key"]</expression>
+                                    <property name="dataType">string</property>
+                                </structure>
+                                <structure>
+                                    <property name="name">translation</property>
+                                    <text-property name="displayName">translation</text-property>
+                                    <expression name="expression" type="javascript">dataSetRow["translation"]</expression>
+                                    <property name="dataType">string</property>
+                                </structure>
+                                <structure>
+                                    <property name="name">Column Binding</property>
+                                    <text-property name="displayName">INVOICE</text-property>
+                                    <expression name="expression" type="javascript">row["translation"]!= '' ? row["translation"] : row["message_key"]</expression>
+                                    <property name="dataType">string</property>
+                                    <property name="allowExport">true</property>
+                                </structure>
+                            </list-property>
+                            <property name="resultSetColumn">Column Binding</property>
+                        </data>
                     </cell>
                     <cell id="412">
                         <property name="colSpan">5</property>
@@ -1224,10 +1383,41 @@ where
                         <property name="borderRightWidth">thin</property>
                         <property name="borderTopStyle">solid</property>
                         <property name="borderTopWidth">thin</property>
-                        <label id="240">
+                        <data id="601">
+                            <property name="fontFamily">fantasy</property>
                             <property name="fontWeight">bold</property>
-                            <text-property name="text">Date</text-property>
-                        </label>
+                            <property name="dataSet">Data Set1</property>
+                            <list-property name="paramBindings">
+                                <structure>
+                                    <property name="paramName">param_1</property>
+                                    <simple-property-list name="expression">
+                                        <value type="javascript">'Date'</value>
+                                    </simple-property-list>
+                                </structure>
+                            </list-property>
+                            <list-property name="boundDataColumns">
+                                <structure>
+                                    <property name="name">message_key</property>
+                                    <text-property name="displayName">message_key</text-property>
+                                    <expression name="expression" type="javascript">dataSetRow["message_key"]</expression>
+                                    <property name="dataType">string</property>
+                                </structure>
+                                <structure>
+                                    <property name="name">translation</property>
+                                    <text-property name="displayName">translation</text-property>
+                                    <expression name="expression" type="javascript">dataSetRow["translation"]</expression>
+                                    <property name="dataType">string</property>
+                                </structure>
+                                <structure>
+                                    <property name="name">Column Binding</property>
+                                    <text-property name="displayName">Date</text-property>
+                                    <expression name="expression" type="javascript">row["translation"]!= '' ? row["translation"] : row["message_key"]</expression>
+                                    <property name="dataType">string</property>
+                                    <property name="allowExport">true</property>
+                                </structure>
+                            </list-property>
+                            <property name="resultSetColumn">Column Binding</property>
+                        </data>
                     </cell>
                     <cell id="442">
                         <property name="colSpan">2</property>
@@ -1305,10 +1495,40 @@ where
                         <property name="borderRightWidth">thin</property>
                         <property name="borderTopStyle">solid</property>
                         <property name="borderTopWidth">thin</property>
-                        <label id="236">
+                        <data id="603">
                             <property name="fontWeight">bold</property>
-                            <text-property name="text">Reference</text-property>
-                        </label>
+                            <property name="dataSet">Data Set1</property>
+                            <list-property name="paramBindings">
+                                <structure>
+                                    <property name="paramName">param_1</property>
+                                    <simple-property-list name="expression">
+                                        <value type="javascript">'Reference'</value>
+                                    </simple-property-list>
+                                </structure>
+                            </list-property>
+                            <list-property name="boundDataColumns">
+                                <structure>
+                                    <property name="name">message_key</property>
+                                    <text-property name="displayName">message_key</text-property>
+                                    <expression name="expression" type="javascript">dataSetRow["message_key"]</expression>
+                                    <property name="dataType">string</property>
+                                </structure>
+                                <structure>
+                                    <property name="name">translation</property>
+                                    <text-property name="displayName">translation</text-property>
+                                    <expression name="expression" type="javascript">dataSetRow["translation"]</expression>
+                                    <property name="dataType">string</property>
+                                </structure>
+                                <structure>
+                                    <property name="name">Column Binding</property>
+                                    <text-property name="displayName">reference</text-property>
+                                    <expression name="expression" type="javascript">row["translation"]!= '' ? row["translation"] : row["message_key"]</expression>
+                                    <property name="dataType">string</property>
+                                    <property name="allowExport">true</property>
+                                </structure>
+                            </list-property>
+                            <property name="resultSetColumn">Column Binding</property>
+                        </data>
                     </cell>
                     <cell id="458">
                         <property name="colSpan">2</property>
@@ -1388,6 +1608,7 @@ where
                 <row id="487"/>
                 <row id="234">
                     <cell id="237">
+                        <property name="fontWeight">bold</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
                         <property name="borderLeftStyle">solid</property>
@@ -1396,11 +1617,42 @@ where
                         <property name="borderRightWidth">thin</property>
                         <property name="borderTopStyle">solid</property>
                         <property name="borderTopWidth">thin</property>
-                        <label id="242">
-                            <text-property name="text">Item</text-property>
-                        </label>
+                        <data id="600">
+                            <property name="dataSet">Data Set1</property>
+                            <list-property name="paramBindings">
+                                <structure>
+                                    <property name="paramName">param_1</property>
+                                    <simple-property-list name="expression">
+                                        <value type="javascript">'Item'</value>
+                                    </simple-property-list>
+                                </structure>
+                            </list-property>
+                            <list-property name="boundDataColumns">
+                                <structure>
+                                    <property name="name">message_key</property>
+                                    <text-property name="displayName">message_key</text-property>
+                                    <expression name="expression" type="javascript">dataSetRow["message_key"]</expression>
+                                    <property name="dataType">string</property>
+                                </structure>
+                                <structure>
+                                    <property name="name">translation</property>
+                                    <text-property name="displayName">translation</text-property>
+                                    <expression name="expression" type="javascript">dataSetRow["translation"]</expression>
+                                    <property name="dataType">string</property>
+                                </structure>
+                                <structure>
+                                    <property name="name">Column Binding</property>
+                                    <text-property name="displayName">Item</text-property>
+                                    <expression name="expression" type="javascript">row["translation"]!= '' ? row["translation"] : row["message_key"]</expression>
+                                    <property name="dataType">string</property>
+                                    <property name="allowExport">true</property>
+                                </structure>
+                            </list-property>
+                            <property name="resultSetColumn">Column Binding</property>
+                        </data>
                     </cell>
                     <cell id="239">
+                        <property name="fontWeight">bold</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
                         <property name="borderLeftStyle">solid</property>
@@ -1409,11 +1661,42 @@ where
                         <property name="borderRightWidth">thin</property>
                         <property name="borderTopStyle">solid</property>
                         <property name="borderTopWidth">thin</property>
-                        <label id="244">
-                            <text-property name="text">Qty</text-property>
-                        </label>
+                        <data id="599">
+                            <property name="dataSet">Data Set1</property>
+                            <list-property name="paramBindings">
+                                <structure>
+                                    <property name="paramName">param_1</property>
+                                    <simple-property-list name="expression">
+                                        <value type="javascript">'Qty'</value>
+                                    </simple-property-list>
+                                </structure>
+                            </list-property>
+                            <list-property name="boundDataColumns">
+                                <structure>
+                                    <property name="name">message_key</property>
+                                    <text-property name="displayName">message_key</text-property>
+                                    <expression name="expression" type="javascript">dataSetRow["message_key"]</expression>
+                                    <property name="dataType">string</property>
+                                </structure>
+                                <structure>
+                                    <property name="name">translation</property>
+                                    <text-property name="displayName">translation</text-property>
+                                    <expression name="expression" type="javascript">dataSetRow["translation"]</expression>
+                                    <property name="dataType">string</property>
+                                </structure>
+                                <structure>
+                                    <property name="name">Column Binding</property>
+                                    <text-property name="displayName">Qty</text-property>
+                                    <expression name="expression" type="javascript">row["translation"]!= '' ? row["translation"] : row["message_key"]</expression>
+                                    <property name="dataType">string</property>
+                                    <property name="allowExport">true</property>
+                                </structure>
+                            </list-property>
+                            <property name="resultSetColumn">Column Binding</property>
+                        </data>
                     </cell>
                     <cell id="241">
+                        <property name="fontWeight">bold</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
                         <property name="borderLeftStyle">solid</property>
@@ -1422,11 +1705,42 @@ where
                         <property name="borderRightWidth">thin</property>
                         <property name="borderTopStyle">solid</property>
                         <property name="borderTopWidth">thin</property>
-                        <label id="246">
-                            <text-property name="text">Price</text-property>
-                        </label>
+                        <data id="598">
+                            <property name="dataSet">Data Set1</property>
+                            <list-property name="paramBindings">
+                                <structure>
+                                    <property name="paramName">param_1</property>
+                                    <simple-property-list name="expression">
+                                        <value type="javascript">'Price'</value>
+                                    </simple-property-list>
+                                </structure>
+                            </list-property>
+                            <list-property name="boundDataColumns">
+                                <structure>
+                                    <property name="name">message_key</property>
+                                    <text-property name="displayName">message_key</text-property>
+                                    <expression name="expression" type="javascript">dataSetRow["message_key"]</expression>
+                                    <property name="dataType">string</property>
+                                </structure>
+                                <structure>
+                                    <property name="name">translation</property>
+                                    <text-property name="displayName">translation</text-property>
+                                    <expression name="expression" type="javascript">dataSetRow["translation"]</expression>
+                                    <property name="dataType">string</property>
+                                </structure>
+                                <structure>
+                                    <property name="name">Column Binding</property>
+                                    <text-property name="displayName">Price</text-property>
+                                    <expression name="expression" type="javascript">row["translation"]!= '' ? row["translation"] : row["message_key"]</expression>
+                                    <property name="dataType">string</property>
+                                    <property name="allowExport">true</property>
+                                </structure>
+                            </list-property>
+                            <property name="resultSetColumn">Column Binding</property>
+                        </data>
                     </cell>
                     <cell id="243">
+                        <property name="fontWeight">bold</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
                         <property name="borderLeftStyle">solid</property>
@@ -1435,11 +1749,42 @@ where
                         <property name="borderRightWidth">thin</property>
                         <property name="borderTopStyle">solid</property>
                         <property name="borderTopWidth">thin</property>
-                        <label id="248">
-                            <text-property name="text">Net amount</text-property>
-                        </label>
+                        <data id="597">
+                            <property name="dataSet">Data Set1</property>
+                            <list-property name="paramBindings">
+                                <structure>
+                                    <property name="paramName">param_1</property>
+                                    <simple-property-list name="expression">
+                                        <value type="javascript">'Net Amount'</value>
+                                    </simple-property-list>
+                                </structure>
+                            </list-property>
+                            <list-property name="boundDataColumns">
+                                <structure>
+                                    <property name="name">message_key</property>
+                                    <text-property name="displayName">message_key</text-property>
+                                    <expression name="expression" type="javascript">dataSetRow["message_key"]</expression>
+                                    <property name="dataType">string</property>
+                                </structure>
+                                <structure>
+                                    <property name="name">translation</property>
+                                    <text-property name="displayName">translation</text-property>
+                                    <expression name="expression" type="javascript">dataSetRow["translation"]</expression>
+                                    <property name="dataType">string</property>
+                                </structure>
+                                <structure>
+                                    <property name="name">Column Binding</property>
+                                    <text-property name="displayName">Net Amount</text-property>
+                                    <expression name="expression" type="javascript">row["translation"]!= '' ? row["translation"] : row["message_key"]</expression>
+                                    <property name="dataType">string</property>
+                                    <property name="allowExport">true</property>
+                                </structure>
+                            </list-property>
+                            <property name="resultSetColumn">Column Binding</property>
+                        </data>
                     </cell>
                     <cell id="245">
+                        <property name="fontWeight">bold</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
                         <property name="borderLeftStyle">solid</property>
@@ -1448,11 +1793,42 @@ where
                         <property name="borderRightWidth">thin</property>
                         <property name="borderTopStyle">solid</property>
                         <property name="borderTopWidth">thin</property>
-                        <label id="250">
-                            <text-property name="text">IGST</text-property>
-                        </label>
+                        <data id="602">
+                            <property name="dataSet">Data Set1</property>
+                            <list-property name="paramBindings">
+                                <structure>
+                                    <property name="paramName">param_1</property>
+                                    <simple-property-list name="expression">
+                                        <value type="javascript">'IGST'</value>
+                                    </simple-property-list>
+                                </structure>
+                            </list-property>
+                            <list-property name="boundDataColumns">
+                                <structure>
+                                    <property name="name">message_key</property>
+                                    <text-property name="displayName">message_key</text-property>
+                                    <expression name="expression" type="javascript">dataSetRow["message_key"]</expression>
+                                    <property name="dataType">string</property>
+                                </structure>
+                                <structure>
+                                    <property name="name">translation</property>
+                                    <text-property name="displayName">translation</text-property>
+                                    <expression name="expression" type="javascript">dataSetRow["translation"]</expression>
+                                    <property name="dataType">string</property>
+                                </structure>
+                                <structure>
+                                    <property name="name">Column Binding</property>
+                                    <text-property name="displayName">IGST</text-property>
+                                    <expression name="expression" type="javascript">row["translation"]!= '' ? row["translation"] : row["message_key"]</expression>
+                                    <property name="dataType">string</property>
+                                    <property name="allowExport">true</property>
+                                </structure>
+                            </list-property>
+                            <property name="resultSetColumn">Column Binding</property>
+                        </data>
                     </cell>
                     <cell id="247">
+                        <property name="fontWeight">bold</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
                         <property name="borderLeftStyle">solid</property>
@@ -1461,11 +1837,42 @@ where
                         <property name="borderRightWidth">thin</property>
                         <property name="borderTopStyle">solid</property>
                         <property name="borderTopWidth">thin</property>
-                        <label id="252">
-                            <text-property name="text">SGST</text-property>
-                        </label>
+                        <data id="607">
+                            <property name="dataSet">Data Set1</property>
+                            <list-property name="paramBindings">
+                                <structure>
+                                    <property name="paramName">param_1</property>
+                                    <simple-property-list name="expression">
+                                        <value type="javascript">'SGST'</value>
+                                    </simple-property-list>
+                                </structure>
+                            </list-property>
+                            <list-property name="boundDataColumns">
+                                <structure>
+                                    <property name="name">message_key</property>
+                                    <text-property name="displayName">message_key</text-property>
+                                    <expression name="expression" type="javascript">dataSetRow["message_key"]</expression>
+                                    <property name="dataType">string</property>
+                                </structure>
+                                <structure>
+                                    <property name="name">translation</property>
+                                    <text-property name="displayName">translation</text-property>
+                                    <expression name="expression" type="javascript">dataSetRow["translation"]</expression>
+                                    <property name="dataType">string</property>
+                                </structure>
+                                <structure>
+                                    <property name="name">Column Binding</property>
+                                    <text-property name="displayName">SGST</text-property>
+                                    <expression name="expression" type="javascript">row["translation"]!= '' ? row["translation"] : row["message_key"]</expression>
+                                    <property name="dataType">string</property>
+                                    <property name="allowExport">true</property>
+                                </structure>
+                            </list-property>
+                            <property name="resultSetColumn">Column Binding</property>
+                        </data>
                     </cell>
                     <cell id="249">
+                        <property name="fontWeight">bold</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
                         <property name="borderLeftStyle">solid</property>
@@ -1474,11 +1881,42 @@ where
                         <property name="borderRightWidth">thin</property>
                         <property name="borderTopStyle">solid</property>
                         <property name="borderTopWidth">thin</property>
-                        <label id="254">
-                            <text-property name="text">CGST</text-property>
-                        </label>
+                        <data id="606">
+                            <property name="dataSet">Data Set1</property>
+                            <list-property name="paramBindings">
+                                <structure>
+                                    <property name="paramName">param_1</property>
+                                    <simple-property-list name="expression">
+                                        <value type="javascript">'CGST'</value>
+                                    </simple-property-list>
+                                </structure>
+                            </list-property>
+                            <list-property name="boundDataColumns">
+                                <structure>
+                                    <property name="name">message_key</property>
+                                    <text-property name="displayName">message_key</text-property>
+                                    <expression name="expression" type="javascript">dataSetRow["message_key"]</expression>
+                                    <property name="dataType">string</property>
+                                </structure>
+                                <structure>
+                                    <property name="name">translation</property>
+                                    <text-property name="displayName">translation</text-property>
+                                    <expression name="expression" type="javascript">dataSetRow["translation"]</expression>
+                                    <property name="dataType">string</property>
+                                </structure>
+                                <structure>
+                                    <property name="name">Column Binding</property>
+                                    <text-property name="displayName">CGST</text-property>
+                                    <expression name="expression" type="javascript">row["translation"]!= '' ? row["translation"] : row["message_key"]</expression>
+                                    <property name="dataType">string</property>
+                                    <property name="allowExport">true</property>
+                                </structure>
+                            </list-property>
+                            <property name="resultSetColumn">Column Binding</property>
+                        </data>
                     </cell>
                     <cell id="251">
+                        <property name="fontWeight">bold</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
                         <property name="borderLeftStyle">solid</property>
@@ -1487,9 +1925,39 @@ where
                         <property name="borderRightWidth">thin</property>
                         <property name="borderTopStyle">solid</property>
                         <property name="borderTopWidth">thin</property>
-                        <label id="256">
-                            <text-property name="text">Gross amount</text-property>
-                        </label>
+                        <data id="605">
+                            <property name="dataSet">Data Set1</property>
+                            <list-property name="paramBindings">
+                                <structure>
+                                    <property name="paramName">param_1</property>
+                                    <simple-property-list name="expression">
+                                        <value type="javascript">'Gross Amount'</value>
+                                    </simple-property-list>
+                                </structure>
+                            </list-property>
+                            <list-property name="boundDataColumns">
+                                <structure>
+                                    <property name="name">message_key</property>
+                                    <text-property name="displayName">message_key</text-property>
+                                    <expression name="expression" type="javascript">dataSetRow["message_key"]</expression>
+                                    <property name="dataType">string</property>
+                                </structure>
+                                <structure>
+                                    <property name="name">translation</property>
+                                    <text-property name="displayName">translation</text-property>
+                                    <expression name="expression" type="javascript">dataSetRow["translation"]</expression>
+                                    <property name="dataType">string</property>
+                                </structure>
+                                <structure>
+                                    <property name="name">Column Binding</property>
+                                    <text-property name="displayName">Gross amount</text-property>
+                                    <expression name="expression" type="javascript">row["translation"]!= '' ? row["translation"] : row["message_key"]</expression>
+                                    <property name="dataType">string</property>
+                                    <property name="allowExport">true</property>
+                                </structure>
+                            </list-property>
+                            <property name="resultSetColumn">Column Binding</property>
+                        </data>
                     </cell>
                 </row>
             </header>
@@ -1508,6 +1976,7 @@ where
                         <property name="borderTopWidth">thin</property>
                     </cell>
                     <cell id="268">
+                        <property name="fontWeight">bold</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
                         <property name="borderLeftStyle">solid</property>
@@ -1517,6 +1986,7 @@ where
                         <property name="borderTopStyle">solid</property>
                         <property name="borderTopWidth">thin</property>
                         <data id="273">
+                            <property name="fontWeight">normal</property>
                             <property name="resultSetColumn">item</property>
                         </data>
                     </cell>
@@ -1628,6 +2098,7 @@ where
                         <property name="borderTopWidth">thin</property>
                     </cell>
                     <cell id="521">
+                        <property name="fontWeight">bold</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
                         <property name="borderLeftStyle">solid</property>
@@ -1636,8 +2107,7 @@ where
                         <property name="borderRightWidth">thin</property>
                         <property name="borderTopStyle">solid</property>
                         <property name="borderTopWidth">thin</property>
-                        <text id="563">
-                            <property name="fontSize">10pt</property>
+                        <text id="610">
                             <property name="fontWeight">bold</property>
                             <property name="contentType">auto</property>
                             <text-property name="content"><![CDATA[Total]]></text-property>

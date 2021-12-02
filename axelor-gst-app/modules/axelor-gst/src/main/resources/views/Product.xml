@@ -61,7 +61,7 @@
 			<strong>{{salePrice}}</strong>
 			<strong>{{costPrice}}</strong>
 			<br/>
-			<strong>{{image}}</strong>
+			<strong>{{image.fileName}}</strong>
 			<br />
 			<strong>{{gstRate}}</strong>
 			</div>
