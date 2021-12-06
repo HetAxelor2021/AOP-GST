@@ -89,7 +89,7 @@
 						<field name="state" />
 						<field name="country" />
 						<field name="pinCode" />
-						<field name="party" />
+						
 					</editor>
 				</field>
 			</panel>

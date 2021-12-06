@@ -20,14 +20,14 @@
 		<field name="invoice" />
 	</grid>
 	
-	<form name="invoice-line-form" title="Invoice Line" model="com.axelor.gst.db.InvoiceLine" onNew="save, action-invoice-line-invoice-onnew" >
+	<form name="invoice-line-form" title="Invoice Line" model="com.axelor.gst.db.InvoiceLine" onNew=" action-invoice-line-invoice-onnew, action-invoice-line-group-gst-onchange, action-invoice-line-method-product-name" onLoad="action-invoice-line-on-load-invoice-object-record">
 		
 		<panel title="Invoice Line Detail">
 			<field name="product" onChange="action-invoice-line-method-product-name, action-invoice-line-group-gst-onchange"/>
 			<field name="hsbn" />
 			<field name="item" />
 			<field name="qty" onChange="action-invoice-line-group-gst-onchange"/>
-			<field name="price" onChange="action-invoice-line-group-gst-onchange" />
+			<field name="price" onChange="action-invoice-line-group-gst-onchange"  />
 			<field name="netAmount" />
 			<field name="gstRate" />
 			<field name="igst" />
@@ -42,16 +42,38 @@
 	
 	<action-record name="action-invoice-line-invoice-onnew" model="com.axelor.gst.db.InvoiceLine">
 		<field name="invoice" expr="eval:__parent__" />
+		<field name="qty" expr="eval:1" />
+
 	</action-record>
 	
+	
+	<action-record name="action-invoice-line-on-load-invoice-object-record" model="com.axelor.gst.db.InvoiceLine" >
+		<field name="invoice" expr="eval:__parent__" if="invoice==null"/>
+		
+	</action-record>
+	
+	
 	<action-group name="action-invoice-line-group-gst-onchange" >
+		<action name="action-invoice-line-group-price-record" />
+		
+		<action name="action-invoice-line-group-price-attrs, save" />
 		<action name="action-invoice-line-record-gst-calc-netAmount" />
 		<action name="action-invoice-line-record-gst-calc" />
-		<action name="action-invoice-line-record-gst-calc-rate" />
+		<action name="action-invoice-line-record-gst-calc-rate"  /> 
 	</action-group>
 	
+	<action-record name="action-invoice-line-group-price-record" model="com.axelor.gst.db.InvoiceLine">
+		<field name="price" expr="call:com.axelor.gst.web.InvoiceController:getProductPrice(product)" />
+		<field name="hsbn" expr="call:com.axelor.gst.web.InvoiceController:getHSBNProduct(product)" />
+	</action-record>
+	
+	<action-attrs name="action-invoice-line-group-price-attrs">
+		<attribute for="price" name="readonly" expr="true" />
+		<attribute for="hsbn" name="readonly" expr="true" />
+	</action-attrs>
+	
 	<action-method name="action-invoice-line-method-product-name" >
-		<call class="com.axelor.gst.web.InvoiceController" method="itemNameMaker" />
+		<call class="com.axelor.gst.web.InvoiceController" method="itemNameMaker" if="product!=null"/>
 	</action-method>
 	
 	
@@ -61,21 +83,24 @@
 		</action-record>
 		<action-record name="action-invoice-line-record-gst-calc" model="com.axelor.gst.db.InvoiceLine">
 			
+			<field name="igst" expr = "eval:netAmount*(gstRate/100)" if=" __parent__.company.address.state != __parent__.invoiceAddress.state" />
+		 	<!-- <field name="igst" expr = "eval:netAmount*(gstRate/100)" if="__parent__.useInvoiceAddressShipping &amp;&amp; __parent__.company.address.state != __parent__.invoiceAddress.state" /> -->
+			<!-- <field name="igst" expr = "eval:netAmount*(gstRate/100)" if="!__parent__.useInvoiceAddressShipping &amp;&amp; __parent__.company.address.state != __parent__.shippingAddress.state" /> -->
+					
+					
+					
+				 <field name="sgst" expr="eval:netAmount*(gstRate/100)/2" if=" __parent__.company.address.state == __parent__.invoiceAddress.state"/>
+		 	<!-- <field name="sgst" expr="eval:netAmount*(gstRate/100)/2" if="__parent__.useInvoiceAddressShipping &amp;&amp; __parent__.company.address.state == __parent__.invoiceAddress.state"/> -->
+			 <!-- <field name="sgst" expr="eval:netAmount*(gstRate/100)/2" if="!__parent__.useInvoiceAddressShipping &amp;&amp; __parent__.company.address.state == __parent__.shippingAddress.state"/> -->
+			<!-- <field name="cgst" expr="eval:netAmount*(gstRate/100)/2" if="__parent__.useInvoiceAddressShipping &amp;&amp; __parent__.company.address.state == __parent__.invoiceAddress.state"/> -->
+			<field name="cgst" expr="eval:netAmount*(gstRate/100)/2" if=" __parent__.company.address.state == __parent__.invoiceAddress.state"/>
 			
-		 	<field name="igst" expr = "eval:netAmount*(gstRate/100)" if="__parent__.useInvoiceAddressShipping &amp;&amp; __parent__.company.address.state != __parent__.invoiceAddress.state" />
-			<field name="igst" expr = "eval:netAmount*(gstRate/100)" if="!__parent__.useInvoiceAddressShipping &amp;&amp; __parent__.company.address.state != __parent__.shippingAddress.state" />
-					
-					
-					
-				 
-		 	<field name="sgst" expr="eval:netAmount*(gstRate/100)/2" if="__parent__.useInvoiceAddressShipping &amp;&amp; __parent__.company.address.state == __parent__.invoiceAddress.state"/>
-			 <field name="sgst" expr="eval:netAmount*(gstRate/100)/2" if="!__parent__.useInvoiceAddressShipping &amp;&amp; __parent__.company.address.state == __parent__.shippingAddress.state"/>
-			<field name="cgst" expr="eval:netAmount*(gstRate/100)/2" if="__parent__.useInvoiceAddressShipping &amp;&amp; __parent__.company.address.state == __parent__.invoiceAddress.state"/>
-			<field name="cgst" expr="eval:netAmount*(gstRate/100)/2" if="!__parent__.useInvoiceAddressShipping &amp;&amp; __parent__.company.address.state == __parent__.shippingAddress.state"/>
+			<!-- <field name="cgst" expr="eval:netAmount*(gstRate/100)/2" if="!__parent__.useInvoiceAddressShipping &amp;&amp; __parent__.company.address.state == __parent__.shippingAddress.state"/> -->
 		</action-record>
 		<action-record name="action-invoice-line-record-gst-calc-rate" model="com.axelor.gst.db.InvoiceLine">
-			<field name="grossAmount" expr="eval:netAmount+igst" if="__parent__.useInvoiceAddressShipping &amp;&amp; __parent__.company.address.state != __parent__.invoiceAddress.state"/>
-			<field name="grossAmount" expr="eval:netAmount+sgst+cgst" if="!__parent__.useInvoiceAddressShipping &amp;&amp; __parent__.company.address.state == __parent__.shippingAddress.state"/>
+			<field name="grossAmount" expr="eval:netAmount+igst" if=" __parent__.company.address.state != __parent__.invoiceAddress.state"/>
+			
+			<field name="grossAmount" expr="eval:netAmount+sgst+cgst" if="__parent__.company.address.state == __parent__.invoiceAddress.state"/>
 		
 			
 		</action-record>

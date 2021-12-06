@@ -70,7 +70,7 @@
 	</kanban>
 	
 	
-	<form name="invoice-form" title="Invoice" model="com.axelor.gst.db.Invoice" width="large" onNew="action-invoice-form-onnew" onLoad=" action-invoice-invoiceitemlist-onmethod" onSave="action-invoice-on-save-reference-record,action-invoice-on-save-reference-validate">
+	<form name="invoice-form" title="Invoice" model="com.axelor.gst.db.Invoice" width="large" onNew="action-invoice-form-onnew" onLoad=" action-invoice-invoiceitemlist-onmethod" onSave="action-invoice-on-save-reference-record, action-invoice-on-save-reference-validate, action-invoice-on-save-status-record, action-invoice-line-invoice-onnew">
 	<!-- <form name="invoice-form" title="Invoice" model="com.axelor.gst.db.Invoice" width="large" onNew="action-invoice-attrs-btn-status, action-invoice-form-onnew,action-invoice-status-onchange-method" onLoad="action-invoice-attrs-btn-status, action-invoice-invoiceitemlist-onmethod, action-invoice-status-start-onload, action-invoice-status-onchange-method"> -->
 			<toolbar>
 				<button name="btnPrintInvoice" icon="fa-print" onClick="action-invoice-record-filePath-method,save, print-invoices-details" />
@@ -86,18 +86,19 @@
 						<field name="reference" />
 						<field name="dateInvoice" />
 						<field name="priority" />
-						<field name="party" canNew="true" onChange="action-invoice-form-party-onchange"/>
+						<field name="party" canNew="true" onChange="action-invoice-form-party-onchange, action-invoice-on-change-party-invoice-address-contact-method, action-invoice-on-change-party-shipping-address-method"/>
 						<field name="partyContact" />
 						<field name="invoiceAddress" />
 						<field name="shippingAddress" hideIf="useInvoiceAddressShipping"/>
-						<field name="useInvoiceAddressShipping" />
+						<field name="useInvoiceAddressShipping" onChange="action-invoice-on-change-party-shipping-address-method"/>
 						<field name="netAmount" />
 						<field name="netIGST" />
 						<field name="netCGST" />
 						<field name="netSGST" />
 						<field name="grossAmount" />
-						<panel-related field="invoiceItemsList"  colSpan="12" onChange="action-invoice-invoiceitemlist-onmethod"/>
+						<panel-related field="invoiceItemsList"  colSpan="12" onChange="action-invoice-invoiceitemlist-onmethod" />
 						<field name="filePath" type="string" hidden="true"/>
+						
 				</panel>
 				<panel sidebar="true" stacked="true">
 				
@@ -113,7 +114,7 @@
 		<!-- </panel> -->
 	</form>
 	
-	<!--  -->
+	
 	
 	<action-validate name="action-invoice-on-save-reference-validate">
 		<error message="Sequence is not generated for current model" if="!reference"/>
@@ -157,24 +158,39 @@
 		<call class="com.axelor.gst.web.InvoiceController" method="invoiceListCalc" />
 	</action-method>
 	
+	<action-record name="action-invoice-on-save-status-record" model="com.axelor.gst.db.Invoice" >
+		<field name="status" if="!status" expr="draft" />
+	</action-record>
 	
 	<action-record name="action-invoice-form-party-onchange" model="com.axelor.gst.db.Invoice" >
 		<field name="partyContact" expr="eval:null" />
 		<field name="invoiceAddress" expr="eval:null" />
 		<field name="shippingAddress" expr="eval:null" />
-		<field name="partyContact" expr="eval:party.contactList.get(0)"  if="party.contactList.size() > 0"/>
-		<field name="invoiceAddress" expr="eval:party.addressList.get(0)" if="party.addressList.get(0).type.equals('default') || party.addressList.get(0).type.equals('invoice')"/> 
-		<field name="shippingAddress" expr="eval:party.addressList.get(0)" if="  !useInvoiceAddressShipping &amp;&amp; (party.addressList.get(0).type.equals('shipping') || party.addressList.get(0).type.equals('other'))" />
+		
 		
 	</action-record>
 	
 	
+	<action-method name="action-invoice-on-change-party-invoice-address-contact-method" >
+	
+		<call class="com.axelor.gst.web.InvoiceController" method="setAddressContact" />
+	</action-method>
+	
+	<action-method name="action-invoice-on-change-party-shipping-address-method" >
+		<call class="com.axelor.gst.web.InvoiceController" method="setShippingAddress" if="useInvoiceAddressShipping"/>
+	</action-method>
 	
 	<action-record name="action-invoice-form-onnew" model="com.axelor.gst.db.Invoice" >
 		<field name="dateInvoice" expr="eval:__datetime__" />
-	
+		<field name="invoiceItemsList" expr="call:com.axelor.gst.web.InvoiceController:getProductListFromIds(ids, __id__)" if="ids!= null" />
+		
 			
 	</action-record>
+	
+	
+	<action-method name="action-invoice-form-onnew-method" >
+		<call class="com.axelor.gst.web.InvoiceController" method="getProductListfromProducts" />
+	</action-method>
 	
 	<action-record name="action-draft-invoice-onclick" model="com.axelor.gst.db.Invoice" >
 		<field name="status" expr="draft" />

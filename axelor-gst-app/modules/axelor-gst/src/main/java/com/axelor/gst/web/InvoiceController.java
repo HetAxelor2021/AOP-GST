@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 //import javax.transaction.Transactional;
 
@@ -12,6 +13,7 @@ import com.axelor.app.AppSettings;
 import com.axelor.gst.db.Address;
 import com.axelor.gst.db.City;
 import com.axelor.gst.db.Company;
+import com.axelor.gst.db.Contact;
 import com.axelor.gst.db.Country;
 import com.axelor.gst.db.Invoice;
 import com.axelor.gst.db.InvoiceLine;
@@ -24,6 +26,7 @@ import com.axelor.gst.db.repo.CityRepository;
 import com.axelor.gst.db.repo.CountryRepository;
 import com.axelor.gst.db.repo.InvoiceLineRepository;
 import com.axelor.gst.db.repo.InvoiceRepository;
+import com.axelor.gst.db.repo.ProductRepository;
 import com.axelor.gst.db.repo.SequenceRepository;
 import com.axelor.gst.db.repo.StateRepository;
 import com.axelor.gst.service.GstCalculation;
@@ -195,6 +198,7 @@ public class InvoiceController {
 	
 		
 	}
+	
 	
 	public void invoiceListCalc(ActionRequest request, ActionResponse response) {
 		Context context = request.getContext();
@@ -390,6 +394,127 @@ public class InvoiceController {
 	}
 	
 	
+	public void setAddressContact(ActionRequest request, ActionResponse response) {
+		System.out.println("we are in address contact");
+		Context  context = request.getContext();
+		
+		Invoice invoice = context.asType(Invoice.class);
+		
+		Party party = invoice.getParty();
+		
+		List<Address> addressList = party.getAddressList();
+		List<Contact> contactList = party.getContactList();
+		
+		
+		
+		
+		Address defaultAdd = null;
+		Address invoiceAdd = null;
+		for(int i=0;i<addressList.size();i++) {
+			if(addressList.get(i).getType().equals("invoice") ) {
+				invoiceAdd = addressList.get(i);
+			}else if(addressList.get(i).getType().equals("default")) {
+				defaultAdd = addressList.get(i);
+			}
+		}
+		invoiceAdd = (invoiceAdd==null) ? defaultAdd : invoiceAdd;
+		response.setValue("invoiceAddress", invoiceAdd);
+		
+		
+		Contact primaryContact = null;
+		for(int i=0;i<contactList.size();i++) {
+			if(contactList.get(i).getType().equals("primary")) {
+				primaryContact = contactList.get(i);
+			}
+		}
+		System.err.println(primaryContact.toString()+"hello"	);
+		
+		response.setValue("partyContact", primaryContact);
+		
+	}
+	
+	public void setShippingAddress(ActionRequest request, ActionResponse response) {
+		
+		Context  context = request.getContext();
+		
+		Invoice invoice = context.asType(Invoice.class);
+		
+		Party party = invoice.getParty();
+		
+		List<Address> addressList = party.getAddressList();
+	
+		
+		Address defaultAdd = null;
+		Address shippingAdd = null;
+		for(int i=0;i<addressList.size();i++) {
+			if(addressList.get(i).getType().equals("shipping") ) {
+				shippingAdd = addressList.get(i);
+			}else if(addressList.get(i).getType().equals("default")) {
+				defaultAdd = addressList.get(i);
+			}
+		}
+		shippingAdd = (shippingAdd==null) ? defaultAdd : shippingAdd;
+		response.setValue("shippingAddress", shippingAdd);
+		
+		
+		
+	}
+	
+	@CallMethod
+	public BigDecimal getProductPrice(Product product) {
+		return product.getSalePrice();
+	}
+	@CallMethod
+	public String getHSBNProduct(Product product) {
+		return product.getHsbn();
+	}
+	
+	
+	public void getProductListfromProducts(ActionRequest request, ActionResponse response) {
+		Context context = request.getContext();
+		
+		Invoice invoice = context.asType(Invoice.class);
+////		System.out.println(context.);
+//		System.out.println(request.getData().get("context")+"hello");
+//		Map<String, List<Long>> a = (Map<String, List<Long>>) request.getData().get("context");
+////		a.get
+//		System.out.println(a.get("listOfProduct").get(0));
+//	//	invoice.setInvoiceItemsList();
+		
+	}
+	
+//	public void getProductListFromIds()
+		@CallMethod
+	public List<InvoiceLine> getProductListFromIds(List<Integer> ids, Long id) {
+		
+		
+		List<Product> productList  = new ArrayList<Product>();
+		List<InvoiceLine> invoiceLineList = new ArrayList<InvoiceLine>();
+		
+		System.out.println("hello psdjsdlfj");
+		for(int i=0;i<ids.size();i++) {
+			InvoiceLine il = Beans.get(InvoiceLine.class);
+
+			System.out.println(ids.get(i));
+			Product product = Beans.get(ProductRepository.class).find((long)ids.get(i)); 
+			il.setProduct(product);
+			il.setHsbn(product.getHsbn());
+			il.setItem(product.getName());
+			il.setPrice(product.getSalePrice());
+			il.setQty(1);
+			il.setGstRate(product.getCategory().getGstRate());
+			il.setItem("["+product.getCode()+"] "+product.getName());
+			
+			invoiceLineList.add(il);
+			
+			
+		}
+	
+		
+		return invoiceLineList;
+	}
+		
+
 }
 
 
