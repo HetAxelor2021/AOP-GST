@@ -28,24 +28,5 @@ public abstract class AbstractTest {
   @Before
   public void ensureSequence() {
 
-    if (checked || sequences.findByName("sale.order.seq") != null) {
-      return;
-    }
-
-    checked = true;
-
-    final MetaSequence seq = new MetaSequence();
-    seq.setName("sale.order.seq");
-    seq.setPrefix("SO");
-    seq.setPadding(5);
-
-    JPA.runInTransaction(
-        new Runnable() {
-
-          @Override
-          public void run() {
-            sequences.save(seq);
-          }
-        });
   }
 }

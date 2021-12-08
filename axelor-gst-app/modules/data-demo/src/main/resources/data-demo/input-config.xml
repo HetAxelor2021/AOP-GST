@@ -10,7 +10,7 @@
 	<input file="titles.csv" type="com.axelor.demo.db.Title" />
 	<input file="company.csv" type="com.axelor.demo.db.Companies" />
 	<input file="circles.csv" type="com.axelor.demo.db.Circle" />
-	<input file="contacts.csv" type="com.axelor.demo.db.Contactt" >
+	 <input file="contacts.csv" type="com.axelor.demo.db.Contactt" >
 				
 				
 		<bind to="title" search="self.code= :title" update="true" if="title.length() &lt;= 2">

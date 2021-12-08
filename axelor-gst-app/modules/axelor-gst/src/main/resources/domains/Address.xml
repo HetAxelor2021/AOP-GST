@@ -4,6 +4,8 @@
   xsi:schemaLocation="http://axelor.com/xml/ns/domain-models
   http://axelor.com/xml/ns/domain-models/domain-models_5.4.xsd">
 	
+	
+	
 	<module name="gst" package="com.axelor.gst.db" />
 	<entity name="Address" >
 		<string name="type" title="Type" selection ="gst.address.type.select" required="true" />
