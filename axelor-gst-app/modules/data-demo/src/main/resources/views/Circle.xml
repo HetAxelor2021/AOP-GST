@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
+  
+  <grid name="circle-grid" title="Circles" model="com.axelor.demo.db.Circle">
+  	<field name="code"/>
+  </grid>
+  
+  <form name="circle-form" title="Circle" model="com.axelor.demo.db.Circle" >
+  	<panel>
+  		<field name="code" />
+  	</panel>
+  </form>
+  <menuitem name="root-circle" title="Circles" action="root.circle" />
+	<action-view name="root.circle" title="Circle" model="com.axelor.demo.db.Circle" >
+		<view type="grid" name="circle-grid" />
+		<view type="form" name="circle-form" />
+	</action-view>
+  
+  
+  </object-views>

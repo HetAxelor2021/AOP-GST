@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
+  
+  <grid name="companies-grid" title="Companies" model="com.axelor.demo.db.Companies">
+  	<field name="code"/>
+  </grid>
+  
+  <form name="companies-form" title="Companies" model="com.axelor.demo.db.Companies" >
+  	<panel>
+  		<field name="code" />
+  	</panel>
+  </form>
+  <menuitem name="root-companies" title="Companies" action="root.companies" />
+	<action-view name="root.companies" title="Companies" model="com.axelor.demo.db.Companies" >
+		<view type="grid" name="companies-grid" />
+		<view type="form" name="companies-form" />
+	</action-view>
+  
+  
+  </object-views>

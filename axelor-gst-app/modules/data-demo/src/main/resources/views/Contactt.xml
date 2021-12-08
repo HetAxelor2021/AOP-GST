@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
+	<grid name="contactt-grid" title="Contacts" model="com.axelor.demo.db.Contactt">
+		<field name="title" />
+		<field name="firstName" />
+		<field name="lastName" />
+		<field name="fullName" />
+		<field name="dateOfBirth" />
+		<field name="email" />
+		<field name="phone" />
+		<field name="circle" />
+		<field name="company" />
+	</grid>
+	
+	<form name="contactt-form" title="Contact" model="com.axelor.demo.db.Contactt" >
+		<panel title="Contact Details" >
+			<field name="title" />
+			<field name="firstName" />
+			<field name="lastName" />
+			<field name="fullName" />
+			<field name="dateOfBirth" />
+			<field name="email" />
+			<field name="phone" />
+			<field name="circle" />
+			<field name="company" />
+				
+		</panel>
+	</form> 
+	
+	<menuitem name="root-contactt" title="Contacts" action="root.contactt" />
+	<action-view name="root.contactt" title="Contacts" model="com.axelor.demo.db.Contactt" >
+		<view type="grid" name="contactt-grid" />
+		<view type="form" name="contactt-form" />
+	</action-view>
+
+ </object-views>

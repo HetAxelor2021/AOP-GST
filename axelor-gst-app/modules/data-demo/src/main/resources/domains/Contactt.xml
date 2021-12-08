@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<domain-models xmlns="http://axelor.com/xml/ns/domain-models"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/domain-models
+  http://axelor.com/xml/ns/domain-models/domain-models_5.4.xsd">
+	
+	<module name="demo" package="com.axelor.demo.db" />
+	<entity name="Contactt" >
+		<many-to-one name="title"  ref="com.axelor.demo.db.Title"/>
+		<string name="firstName" />
+		<string name="lastName" />
+		<string name="fullName" />
+		<date name="dateOfBirth" />
+		<string name="email" />
+		<integer name="phone" />
+		<one-to-one name="circle" ref="com.axelor.demo.db.Circle" />
+		<many-to-one name="companies" ref="com.axelor.demo.db.Companies" />
+		
+		
+	</entity>
+	
+	
+ </domain-models>
