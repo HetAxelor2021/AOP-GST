@@ -1,0 +1,5 @@
+type,line1,line2,city,state,country,pincode
+default,add1line1,add1line2,city1,state1,country1,123456
+invoice,add1line2,add1line2,city2,state2,country2,234567
+shipping,add1line3,add3line3,city3,state3,country3,345678
+,add1line4,add2line4,city4,state4,country4,456789
