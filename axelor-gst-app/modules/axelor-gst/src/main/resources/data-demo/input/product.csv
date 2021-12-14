@@ -1,0 +1,5 @@
+name,code,hsbn,category,salePrice,costPrice,image
+product1,1111,hsbn1,proCate1,20,18,image1
+product2,2222,hsbn2,proCate2,30,20,image2
+product3,3333,hsbn3,proCate3,30,25,image3
+product4,4444,hsbn4,proCate4,28,22,image4

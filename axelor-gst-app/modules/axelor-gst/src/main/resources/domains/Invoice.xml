@@ -25,6 +25,9 @@
 		<decimal name="netSGST" title="Net SGST" readonly="true" />
 		<decimal name="grossAmount" title="Gross Amount" readonly="true" />
 		<one-to-many ref="com.axelor.gst.db.InvoiceLine" name="invoiceItemsList" title="List of Invoice Items"  mappedBy="invoice" />
-		 
+		<many-to-one name="productFileUpload" title="Product CSV" ref="com.axelor.meta.db.MetaFile" /> 
+		<many-to-one name="productCategoryFileUpload" title="Product Category CSV" ref="com.axelor.meta.db.MetaFile" /> 
+		<many-to-one name="invoiceLineFileUpload" title="Invoice Line CSV" ref="com.axelor.meta.db.MetaFile" /> 
+		
 	</entity>
 </domain-models>

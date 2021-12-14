@@ -5,6 +5,7 @@
   http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
 	
 	<grid name="invoice-grid" title="Invoices" model="com.axelor.gst.db.Invoice" >
+		
 		<field name="status" />
 		<field name="company" />
 		<field name="reference" />
@@ -70,14 +71,17 @@
 	</kanban>
 	
 	
-	<form name="invoice-form" title="Invoice" model="com.axelor.gst.db.Invoice" width="large" onNew="action-invoice-form-onnew" onLoad=" action-invoice-invoiceitemlist-onmethod" onSave="action-invoice-on-save-reference-record, action-invoice-on-save-reference-validate, action-invoice-on-save-status-record, action-invoice-line-invoice-onnew">
+	<form name="invoice-form" title="Invoice"  model="com.axelor.gst.db.Invoice" width="large" onNew="action-invoice-form-onnew" onLoad=" action-invoice-invoiceitemlist-onmethod" onSave="action-invoice-on-save-reference-record, action-invoice-on-save-reference-validate, action-invoice-on-save-status-record, action-invoice-line-invoice-onnew" canAttach="true">
 	<!-- <form name="invoice-form" title="Invoice" model="com.axelor.gst.db.Invoice" width="large" onNew="action-invoice-attrs-btn-status, action-invoice-form-onnew,action-invoice-status-onchange-method" onLoad="action-invoice-attrs-btn-status, action-invoice-invoiceitemlist-onmethod, action-invoice-status-start-onload, action-invoice-status-onchange-method"> -->
 			<toolbar>
 				<button name="btnPrintInvoice" icon="fa-print" onClick="action-invoice-record-filePath-method,save, print-invoices-details" />
+		
+				
+		
 			</toolbar>
 			<!-- <panel name="mainPanel" > -->
 				
-					
+			<panel-tabs>
 					<panel title="Invoice" >
 						<field name="status" widget="navSelect" onChange="" showTitle="false" colSpan="12" />
 						
@@ -99,7 +103,15 @@
 						<panel-related field="invoiceItemsList"  colSpan="12" onChange="action-invoice-invoiceitemlist-onmethod" />
 						<field name="filePath" type="string" hidden="true"/>
 						
-				</panel>
+					</panel>
+					<panel title="Data Import" >
+						<field name="productFileUpload" widget="binary-link" />
+						<field name="productCategoryFileUpload" widget="binary-link" />
+						<field name="invoiceLineFileUpload" widget="binary-link" />
+						<button name="dataImportCsv" onclick="" title="CSV Import" icon="fa-file-import" onClick="action-invoice-on-click-product-file-import-method" />
+					</panel>
+			
+			</panel-tabs>
 				<panel sidebar="true" stacked="true">
 				
 				
@@ -114,7 +126,13 @@
 		<!-- </panel> -->
 	</form>
 	
-	
+	<action-method name="action-invoice-on-click-product-file-import-method" >
+		<call class="com.axelor.gst.web.InvoiceController" method="dataImportProduct" />
+	</action-method>
+
+	<action-method name="action-invoice-on-click-file-upload-method" >
+		<call class="com.axelor.meta.web.MetaController" method="moreAttrs" />
+	</action-method>
 	
 	<action-validate name="action-invoice-on-save-reference-validate">
 		<error message="Sequence is not generated for current model" if="!reference"/>

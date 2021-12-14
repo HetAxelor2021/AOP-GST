@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 
 import com.axelor.data.csv.CSVImporter;
 import com.axelor.gst.db.repo.AddressRepository;
+import com.axelor.gst.db.repo.InvoiceLineRepository;
 import com.axelor.inject.Beans;
 import com.axelor.test.GuiceModules;
 import com.axelor.test.GuiceRunner;
@@ -25,6 +26,23 @@ public class CSVDataTest {
 		System.err.println("///////////////////////////////////////////////////////////");
 		
 		
+		
+	}
+	
+	@Test
+	public void testInvoiceLineImport() throws IOException{
+		Beans.get(InvoiceLineRepository.class).all().fetch().stream().forEach(invoiceLine -> {
+			System.out.println(invoiceLine.getProduct() + " : "+
+				invoiceLine.getInvoice() );
+		});
+		Importer importer = new CSVImporter("src/main/resources/data-demo/csv-multi-config.xml","src/main/resources/data-demo/input");
+		importer.run();
+		Beans.get(InvoiceLineRepository.class).all().fetch().stream().forEach(invoiceLine -> {
+			System.out.println(invoiceLine.getProduct() + " : "+
+				invoiceLine.getInvoice() );
+		});
+		
+			
 	}
 	
 }

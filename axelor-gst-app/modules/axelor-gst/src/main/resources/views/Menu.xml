@@ -123,9 +123,9 @@
   	<!-- invoice-sub-section-create-invoice -->
   	<menuitem name="invoice-root-create-invoice" title="Create Invoice" parent="invoice-root" action="action.invoice.view.invoice" />
   	<action-view name="action.invoice.view.invoice" title="Create invoice" model="com.axelor.gst.db.Invoice" >
-  		<view type="grid" name="invoice-grid" />
   		<view type="form" name="invoice-form" />
-  		
+  		<view type="grid" name="invoice-grid" />
+  	
   	
   	</action-view>
   	

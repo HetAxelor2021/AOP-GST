@@ -1,6 +1,11 @@
 package com.axelor.gst.web;
 
+import java.io.File;
+import java.io.IOException;
 import java.math.BigDecimal;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,6 +15,9 @@ import java.util.Map;
 //import javax.transaction.Transactional;
 
 import com.axelor.app.AppSettings;
+import com.axelor.data.Importer;
+import com.axelor.data.csv.CSVImporter;
+import com.axelor.dms.db.DMSFile;
 import com.axelor.gst.db.Address;
 import com.axelor.gst.db.City;
 import com.axelor.gst.db.Company;
@@ -32,11 +40,13 @@ import com.axelor.gst.db.repo.StateRepository;
 import com.axelor.gst.service.GstCalculation;
 import com.axelor.inject.Beans;
 import com.axelor.meta.CallMethod;
+import com.axelor.meta.MetaFiles;
 import com.axelor.meta.db.MetaModel;
 import com.axelor.meta.db.repo.MetaModelRepository;
 import com.axelor.rpc.ActionRequest;
 import com.axelor.rpc.ActionResponse;
 import com.axelor.rpc.Context;
+import com.google.common.io.Resources;
 import com.google.inject.Inject;
 import com.google.inject.persist.Transactional;
 
@@ -507,14 +517,50 @@ public class InvoiceController {
 			
 			invoiceLineList.add(il);
 			
-			
+	
 		}
 	
 		
 		return invoiceLineList;
 	}
-		
 
+		
+	public void dataImportProduct(ActionRequest request, ActionResponse response) throws IOException {
+		Context context = request.getContext();
+		Invoice invoice = context.asType(Invoice.class);
+//		System.err.println(getProductFilePath()+"hello guys") ;
+//		invoice.getProductFileUpload().setFilePath();
+		String path= AppSettings.get().get("file.upload.dir");
+		
+//		System.out.println("we are in "+Beans.get(MetaFiles.class).upload(new File("product.csv"),).getFilePath());
+//		System.out.println(Paths.get("axelor-gst-app").toAbsolutePath());
+//		Beans.get(MetaFiles.class).upload(new File("src/main/resources/product.csv"),invoice.getProductFileUpload());
+//		
+		Beans.get(InvoiceLineRepository.class).all().fetch().stream().forEach(invoiceLine -> {
+			System.out.println(invoiceLine.getProduct() + " : "+
+				invoiceLine.getInvoice() );
+			
+			
+		});
+		String xmlPath = getClass().getClassLoader().getResources("data-demo/csv-multi-config.xml")+"";
+//		String xmlPath = Resources.getResource("data-demo/csv-multi-config.xml")+"";
+		String csvPath= Resources.getResource("data-demo/input")+"";
+		System.out.println(xmlPath.substring(9)+" : "+csvPath.substring(9,csvPath.length()-1));
+		Importer importer = new CSVImporter(xmlPath.substring(9), csvPath.substring(9,csvPath.length()-1));
+		importer.run();
+		
+		
+		
+		
+		
+		Beans.get(InvoiceLineRepository.class).all().fetch().stream().forEach(invoiceLine -> {
+			System.out.println(invoiceLine.getProduct() + " : "+
+				invoiceLine.getInvoice() );
+			
+			
+		});
+	}
+	
 }
 
 
