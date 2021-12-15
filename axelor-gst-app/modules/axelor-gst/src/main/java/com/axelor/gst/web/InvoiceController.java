@@ -3,7 +3,10 @@ package com.axelor.gst.web;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.file.FileSystems;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
@@ -11,6 +14,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 //import javax.transaction.Transactional;
 
@@ -46,6 +51,7 @@ import com.axelor.meta.db.repo.MetaModelRepository;
 import com.axelor.rpc.ActionRequest;
 import com.axelor.rpc.ActionResponse;
 import com.axelor.rpc.Context;
+//import com.google.common.io.Files;
 import com.google.common.io.Resources;
 import com.google.inject.Inject;
 import com.google.inject.persist.Transactional;
@@ -57,23 +63,22 @@ public class InvoiceController {
 		
 		InvoiceLine invoiceLine = context.asType(InvoiceLine.class);
 		
-		if(invoiceLine.getId() != null) {
-			invoiceLine = Beans.get(InvoiceLineRepository.class).find(invoiceLine.getId());
-		}
 		Invoice invoice = context.getParent().asType(Invoice.class);
-		if(invoice.getId() != null) {
-			invoice = Beans.get(InvoiceRepository.class).find(invoice.getId());
-		}
 		
-		Address address = invoice.getCompany().getAddress();
+		Address addressCompany = invoice.getCompany().getAddress();
 //		String stateName = address.get
-
+		
+		Address addressInvoice = invoice.getInvoiceAddress();
+		
+		
 		
 		System.out.println("hello we are in all gst calculation" + invoiceLine.toString());
 //		System.out.println("qty: "+qty+ " price"+price );
 		
 		GstCalculation gstCalculation = Beans.get(GstCalculation.class);
-		
+		if(addressInvoice.getState().equals(addressCompany.getState())) {
+//			gstCalculation.
+		}
 		BigDecimal netAmount = gstCalculation.netAmountCalc(invoiceLine.getQty(),invoiceLine.getPrice());
 		BigDecimal gstRate = invoiceLine.getGstRate();
 //		if()
@@ -525,7 +530,7 @@ public class InvoiceController {
 	}
 
 		
-	public void dataImportProduct(ActionRequest request, ActionResponse response) throws IOException {
+	public void dataImportProduct(ActionRequest request, ActionResponse response) throws IOException, URISyntaxException  {
 		Context context = request.getContext();
 		Invoice invoice = context.asType(Invoice.class);
 //		System.err.println(getProductFilePath()+"hello guys") ;
@@ -542,15 +547,22 @@ public class InvoiceController {
 			
 			
 		});
-		String xmlPath = getClass().getClassLoader().getResources("data-demo/csv-multi-config.xml")+"";
-//		String xmlPath = Resources.getResource("data-demo/csv-multi-config.xml")+"";
+		
+		
+		
+		
+		
+		
+		String xmlPath = Resources.getResource("data-demo/csv-multi-config.xml")+"";
 		String csvPath= Resources.getResource("data-demo/input")+"";
-		System.out.println(xmlPath.substring(9)+" : "+csvPath.substring(9,csvPath.length()-1));
-		Importer importer = new CSVImporter(xmlPath.substring(9), csvPath.substring(9,csvPath.length()-1));
+		
+		
+		System.out.println(xmlPath.substring(9).split("/.metadata")[0]+" : "+csvPath.substring(9,csvPath.length()-1).split("/.metadata")[0]);
+		
+		Importer importer = new CSVImporter(xmlPath.substring(9).split("/.metadata")[0]+"/axelor-gst-app/modules/axelor-gst/src/main/resources/data-demo/csv-multi-config.xml",csvPath.substring(9).split("/.metadata")[0]+"/axelor-gst-app/modules/axelor-gst/src/main/resources/data-demo/input");
+		importer.setContext(context);
 		importer.run();
-		
-		
-		
+		System.err.println("this is importer");
 		
 		
 		Beans.get(InvoiceLineRepository.class).all().fetch().stream().forEach(invoiceLine -> {

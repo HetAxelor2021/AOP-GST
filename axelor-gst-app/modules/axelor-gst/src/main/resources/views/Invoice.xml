@@ -71,7 +71,7 @@
 	</kanban>
 	
 	
-	<form name="invoice-form" title="Invoice"  model="com.axelor.gst.db.Invoice" width="large" onNew="action-invoice-form-onnew" onLoad=" action-invoice-invoiceitemlist-onmethod" onSave="action-invoice-on-save-reference-record, action-invoice-on-save-reference-validate, action-invoice-on-save-status-record, action-invoice-line-invoice-onnew" canAttach="true">
+	<form name="invoice-form" title="Invoice"  model="com.axelor.gst.db.Invoice" width="large" onNew="action-invoice-form-onnew,action-invoice-on-save-status-record" onLoad=" action-invoice-invoiceitemlist-onmethod" onSave="action-invoice-on-save-reference-record, action-invoice-on-save-reference-validate, action-invoice-line-invoice-onnew" canAttach="true">
 	<!-- <form name="invoice-form" title="Invoice" model="com.axelor.gst.db.Invoice" width="large" onNew="action-invoice-attrs-btn-status, action-invoice-form-onnew,action-invoice-status-onchange-method" onLoad="action-invoice-attrs-btn-status, action-invoice-invoiceitemlist-onmethod, action-invoice-status-start-onload, action-invoice-status-onchange-method"> -->
 			<toolbar>
 				<button name="btnPrintInvoice" icon="fa-print" onClick="action-invoice-record-filePath-method,save, print-invoices-details" />
@@ -92,7 +92,7 @@
 						<field name="priority" />
 						<field name="party" canNew="true" onChange="action-invoice-form-party-onchange, action-invoice-on-change-party-invoice-address-contact-method, action-invoice-on-change-party-shipping-address-method"/>
 						<field name="partyContact" />
-						<field name="invoiceAddress" />
+						<field name="invoiceAddress"  />
 						<field name="shippingAddress" hideIf="useInvoiceAddressShipping"/>
 						<field name="useInvoiceAddressShipping" onChange="action-invoice-on-change-party-shipping-address-method"/>
 						<field name="netAmount" />
@@ -108,7 +108,7 @@
 						<field name="productFileUpload" widget="binary-link" />
 						<field name="productCategoryFileUpload" widget="binary-link" />
 						<field name="invoiceLineFileUpload" widget="binary-link" />
-						<button name="dataImportCsv" onclick="" title="CSV Import" icon="fa-file-import" onClick="action-invoice-on-click-product-file-import-method" />
+						<button name="dataImportCsv"  title="CSV Import" icon="fa-file-import" onClick="action-invoice-on-click-invoice-line-import-group" />
 					</panel>
 			
 			</panel-tabs>
@@ -117,14 +117,23 @@
 				
 				
 						<button name="btnDraft" title="Draft" onClick="action-draft-invoice-onclick, save" showIf="!status || status == 'cancelled' "/>
-						<button name="btnValidated"   title="Validated" onClick="action-validated-invoice-onclick, save" showIf="!status || status == 'draft'  || status=='cancelled' " />
-						<button name="btnPaid"   title="Paid" onClick="action-paid-invoice-onclick, save" showIf="!status ||  status=='validated' || status=='cancelled' "/>
+						<button name="btnValidated"   title="Validated" onClick="action-validated-invoice-onclick, save" showIf="!status || status == 'draft'  " />
+						<button name="btnPaid"   title="Paid" onClick="action-paid-invoice-onclick, save" showIf="!status ||  status=='validated' "/>
 						<button name="btnCancelled" title="Cancelled" onClick="action-cancelled-invoice-onclick, save" showIf="status=='draft' || status=='validated' || status=='paid' " /> 
 				
 				
 				</panel>
 		<!-- </panel> -->
 	</form>
+	<action-group name="action-invoice-on-click-invoice-line-import-group" >
+		<action name="action-invoice-on-click-product-file-import-method" />
+	<!-- 	<action name="action-invoice-line-group-gst-onchange" /> -->
+		<action name="action-invoice-invoiceitemlist-onmethod" />
+		
+	</action-group>
+	
+	
+
 	
 	<action-method name="action-invoice-on-click-product-file-import-method" >
 		<call class="com.axelor.gst.web.InvoiceController" method="dataImportProduct" />

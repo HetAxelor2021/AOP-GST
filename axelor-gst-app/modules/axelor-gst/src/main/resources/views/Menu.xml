@@ -125,7 +125,8 @@
   	<action-view name="action.invoice.view.invoice" title="Create invoice" model="com.axelor.gst.db.Invoice" >
   		<view type="form" name="invoice-form" />
   		<view type="grid" name="invoice-grid" />
-  	
+  		<view-param name="reload-dotted" value="true" />
+  		<domain>self.status in ('draft')</domain>
   	
   	</action-view>
   	

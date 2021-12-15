@@ -5,18 +5,33 @@
 
 	<input file="productCategory.csv"  type="com.axelor.gst.db.ProductCategory" />
 	 
-	<!-- 
+	
+	<!--  prepare-context="com.axelor.gst.tests.InvoiceLineImport:createPath" --> 
 	<input file="product.csv" type="com.axelor.gst.db.Product"
-	 call="com.axelor.gst.tests.InvoiceLieImport:updateProductData" >
+	 call="com.axelor.gst.tests.InvoiceLineImport:updateProductData" >
 		<bind to="category" search="self.name=:category" update="true" >
 			<bind to="name" column="category" />
+			
 		</bind>
-		<bind to="image" >
+		<bind to="image"  >
+			
 			<bind to="fileName" column="image" />
+			<bind to="filePath" column="image" />
+			
+		</bind>
+		
+		
+	</input>
+	
+	<input file="invoiceLine.csv" type="com.axelor.gst.db.InvoiceLine" 
+		call="com.axelor.gst.tests.InvoiceLineImport:updateInvoiceLineData" >
+		<bind to="product" search="self.name=:product" update="true" >
+			<bind to="name" column="product" />
+			
 		</bind>
 		
 	</input>
-	 -->	
+		
 
 	
 

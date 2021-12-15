@@ -1,5 +1,5 @@
-product,qty
-product1,5
-product2,10
-product3,7
-product4,10
+product,qty,price,netAmount,igst,sgst,cgst,grossAmount
+product1,5,10,50,0,2.50,2.50,55.00
+product2,10,30,300.00,0,15.00,15.00,330.00
+product3,7,50,350.00,35.00,0.00,0.00,385.00
+product4,10,23,230.00,23.00,0.00,0.00,253.00
